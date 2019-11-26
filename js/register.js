@@ -1,5 +1,5 @@
 //แสดง address ของผู้ใช้
-$(document).ready(function() {
+$(window).load(function () {
     if (typeof web3.eth.defaultAccount != 'undefined') {
         $("#addressUser").html(web3.eth.defaultAccount);
     
@@ -9,7 +9,7 @@ $(document).ready(function() {
 });
 
 //ตรวจสอบและแสดงข้อความว่าเคยสมัครแล้วหรือยัง ถ้าสมัครแล้วจะ return ค่าเป็น true
-$( document ).ready(function() {
+$(window).load(function () {
     contract.checkRegister(function(err, result) {
         if (result == false) {
             // แสดงบนหน้า Login

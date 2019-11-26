@@ -1,4 +1,5 @@
 // เช็คยัง login อยู่รึเปล่า
+$(window).load(function () {
 if (sessionStorage.getItem("Login") == 'true' && sessionStorage.getItem("password") != 'null') {
     contract.checkLogin(sessionStorage.getItem("password"), function(err, result) {
         sessionStorage.setItem("Login", result);
@@ -15,3 +16,4 @@ if (sessionStorage.getItem("Login") == 'true' && sessionStorage.getItem("passwor
 } else {
     $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'register.html' + "'" + '">Register</button>');
 }
+});

@@ -1,6 +1,8 @@
 // แสดงชื่อ
-contract.getUser (function(err , res){
-    $("#names").html(res[3] + "&nbsp&nbsp" + res[4]);
+$(window).load(function () {
+    contract.getUser (function(err , res){
+        $("#names").html(res[3] + "&nbsp&nbsp" + res[4]);
+    });
 });
 
 // บันทึกผลการตรวจ

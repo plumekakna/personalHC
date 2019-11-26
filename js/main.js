@@ -1,203 +1,202 @@
 //Check providers    
-if (typeof web3 !== 'undefined') {
-    web3 = new Web3(window.ethereum)
-    window.ethereum.enable().catch(error => {
-    // User denied account access
-    console.log(error);
-})
-} else {
-    // set the provider you want from Web3.providers
-    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
-    console.log("7545");
-};
+
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(window.ethereum)
+        window.ethereum.enable().catch(error => {
+        // User denied account access
+        console.log(error);
+    })
+    } else {
+        // set the provider you want from Web3.providers
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+        console.log("7545");
+    };
 
 
-    // Set account
-    console.log(web3);
-    web3.eth.defaultAccount = web3.eth.accounts[0];
-    console.log(web3.eth.defaultAccount);
+        // Set account
+        web3.eth.defaultAccount = web3.eth.accounts[0];
 
-    // Set ABI
-    var contractAbi = web3.eth.contract([
-        {
-            "constant": true,
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_password",
-                    "type": "string"
-                }
-            ],
-            "name": "checkLogin",
-            "outputs": [
-                {
-                    "internalType": "bool",
-                    "name": "",
-                    "type": "bool"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "getUser",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": false,
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_passwordUser",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_genderUser",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_fnameUser",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_lnameUser",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_addressUser",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_dateUser",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_diseaseUser",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_medicineUser",
-                    "type": "string"
-                }
-            ],
-            "name": "addUser",
-            "outputs": [],
-            "payable": false,
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "checkRegister",
-            "outputs": [
-                {
-                    "internalType": "bool",
-                    "name": "",
-                    "type": "bool"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "name": "countUser",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": false,
-                    "internalType": "string",
-                    "name": "fname",
-                    "type": "string"
-                }
-            ],
-            "name": "addUserEvent",
-            "type": "event"
-        }
-    ]);
-// Set Address Transection
-var contract = contractAbi.at('0x15953c8a9dd0a433A5856877af02d6E0422cdcf9');
-console.log(contract);
+        // Set ABI
+        var contractAbi = web3.eth.contract([
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "_password",
+                        "type": "string"
+                    }
+                ],
+                "name": "checkLogin",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "getUser",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "_passwordUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_genderUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_fnameUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_lnameUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_addressUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_dateUser",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_diseaseUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_medicineUser",
+                        "type": "string"
+                    }
+                ],
+                "name": "addUser",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "checkRegister",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "countUser",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "fname",
+                        "type": "string"
+                    }
+                ],
+                "name": "addUserEvent",
+                "type": "event"
+            }
+        ]);
+    // Set Address Transection
+    var contract = contractAbi.at('0x15953c8a9dd0a433A5856877af02d6E0422cdcf9');
+
 
 var contractAbiResult = web3.eth.contract([
 	{
