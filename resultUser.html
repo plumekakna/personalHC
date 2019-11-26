@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Personal Healthcare</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Bootstrap v4.3.1-->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<!--Main  CSS-->
+        <link rel="stylesheet" href="css/main.css">
+        <!-- checkStillLogin js -->
+        <script src="js/checkStillLogin.js"></script>
+        <!--main js-->
+        <script src="js/main.js"></script>
+    </head>
+    <body class="bg-light">
+        <!-- Nav -->
+        
+		<nav class="navbar navbar-expand-md bg-white navbar-light border-bottom p-3 sticky-top">           
+            <div class="container mg_nav">
+                <!-- Brand -->
+                <a class="navbar-brand" href="index.html"><b>Personal Healthcare</b> </a>
+                
+                 <!-- Toggler/collapsibe Button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			  		  
+			    <!-- Navbar links -->
+			    <div class="col-md-auto ml-3 navbar-collapse collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+					  	<a class="nav-link" href="index.html">หน้าแรก</a>
+					</li>
+					<li class="nav-item">
+					  	<a class="nav-link" href="detailPersonal.html">ข้อมูลส่วนตัว</a>
+					</li>
+					<li class="nav-item">
+					  	<a class="nav-link active" href="resultUser.html">ผลการตวจ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="addresult.html">เพิ่มผลการตรวจ</a>
+                  </li>
+                </ul>
+
+                </div>
+               
+            
+                <div  class="navbar-collapse collapse justify-content-end" id="collapsibleNavbar"> 
+                    <ul class="nav">
+                        <li class="nav-item" id="stillLogin">
+                                
+                        </li>                        
+                        
+                    </ul>
+                </div>                     
+        </nav>
+        
+
+        <!--Body-->
+        <div class="container bg-white border mg_body" style="margin-top:1%; padding: 1%; text-align: center;">
+            <div class="row">
+
+                <div class="col" align="left">
+                    <h2>ผลการตรวจวันที่ 26/11/2562</h2> </br>
+                    <h4 id="names"></h4>
+                </div>
+
+                <div class="col" align ="left"> </br>
+                    <table class="table">
+                        <tr> </br> </br>
+                            <th scope="row">วันที่ (Date)</th>
+                            <td>26 / 11 /2562</td>                   
+                        </tr>
+
+                        <tr>
+                            <th scope="row">ระดับน้ำตาลในเลือด (FPG)</th>
+                            <td>100 มก./ดล.</td>                   
+                        </tr>
+
+                        <tr>
+                            <th scope="row">ระดับน้ำตาลเฉลี่ยในเลือด (HbA1C)</th>
+                            <td>6.5 %</td>
+                            
+                        </tr>
+
+                        <tr>
+                            <th scope="row">ความดัน (Pressure)</th>
+                            
+                            <td>
+                                130/80 มม./ปรอท
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">ไตรกลีเซอไรด์ (TG)</th>
+                            <td>150 มก./ดล.</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">แอลดีแอล (LDL)</th>
+                            <td>100 มก./ดล. </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">เอชดีแอล (HDL)</th>
+                            <td>40 มก./ดล.</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">สารไข่ขาว (Albumin)</th>
+                            <td>30 มก./ลิตร</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">ส่วนสูง ซม. (Height cm.)</th>
+                            <td>170 เซนติเมตร</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">น้ำหนัก (Weight)</th>
+                            <td>110 กิโลกรัม</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">ยาที่ได้รับ (Medicine)</th>
+                            <td>Insulin</td>
+                        </tr>
+
+
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <!--jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!--Web3-->
+        <script src="js/web3.min.js"></script>
+        <!--Boostrap js-->
+        <script src="js/bootstrap.min.js"></script>
+        <!--navbar login js-->
+        <script src="js/navLogin.js"></script>
+        <!--Showdetail js-->
+        <script src="js/showDetailUser.js"></script>
+    </body>
+</html>

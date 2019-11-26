@@ -1,0 +1,29 @@
+.mgl_10 {
+    margin-left : 10% ;
+}
+
+.mgr_10 {
+    margin-right : 10% ;
+}
+
+.box-regis {
+    margin-top:3%; 
+    padding : 10px 100px 30px;
+}
+
+/*set screen */
+@media (min-width: 768px) { 
+    .mg_body {
+        width: 65%;
+    }
+
+    .mg_nav {
+        width: 70%;
+    }
+    .mg_login {
+        width: 60%;
+    }
+ }
+
+
+
