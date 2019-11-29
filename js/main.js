@@ -1,17 +1,20 @@
-//Check providers    
-
-    if (typeof web3 !== 'undefined') {
-        web3 = new Web3(window.ethereum)
-        window.ethereum.enable().catch(error => {
-        // User denied account access
-        console.log(error);
-    })
-    } else {
-        // set the provider you want from Web3.providers
-        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
-        console.log("7545");
-    };
-
+// ตัวแปร contract
+var contract;
+var contractResult;
+const promoiseSetAddress = new Promise(function(resovle, reject) {
+        //Check providers
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(window.ethereum)
+            window.ethereum.enable().catch(error => {
+            // User denied account access
+            console.log(error); 
+        });
+        console.log("Use Metamask");
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+            console.log("Use Localhost7545");
+        }
 
         // Set account
         web3.eth.defaultAccount = web3.eth.accounts[0];
@@ -195,10 +198,10 @@
             }
         ]);
     // Set Address Transection
-    var contract = contractAbi.at('0x15953c8a9dd0a433A5856877af02d6E0422cdcf9');
+    contract = contractAbi.at('0x15953c8a9dd0a433A5856877af02d6E0422cdcf9');
 
-
-var contractAbiResult = web3.eth.contract([
+    //ABI Result
+    var contractAbiResult = web3.eth.contract([
 	{
 		"constant": false,
 		"inputs": [
@@ -302,8 +305,35 @@ var contractAbiResult = web3.eth.contract([
 	}
 ]);
 
-// Set Address Transection Result
-var contractResult = contractAbiResult.at('0x86606C046393ccA66e81E8Bd3Bdd8F31d6d36CAB');
+    // Set Address Transection Result
+    contractResult = contractAbiResult.at('0x86606C046393ccA66e81E8Bd3Bdd8F31d6d36CAB');
+    //resovle
+    resovle('success');   
+})
+.then(function() {
+        $(window).load(function () {
+            if (sessionStorage.getItem("Login") == 'true' && sessionStorage.getItem("password") != 'null') {
+                contract.checkLogin(sessionStorage.getItem("password"), function(err, result) {
+                    sessionStorage.setItem("Login", result);
+                    contract.getUser(function(err, result) {
+                        if (sessionStorage.getItem("Login") == "true"){
+                        $('#stillLogin').html("คุณคือ&nbsp" + result[3] + "&nbsp<a href='index.html' onclick='sessionStorage.removeItem(" + '"' + "Login" + '"' + ");sessionStorage.removeItem(" + '"' + "password" + '"' + ");'" + ">logout</a>");
+                        } else {
+                            //ลบ session password
+                            sessionStorage.removeItem("password");
+                            $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'register.html' + "'" + '">Register</button>');
+                        }
+                    });  
+                });     
+            } else {
+                $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'register.html' + "'" + '">Register</button>');
+            }
+            console.log(web3.eth.defaultAccount);
+            console.log("Navbar");
+        });
+});
+
+
 
 
 

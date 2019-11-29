@@ -1,7 +1,9 @@
 // แสดงชื่อ
-$(window).load(function () {
-    contract.getUser (function(err , res){
-        $("#names").html(res[3] + "&nbsp&nbsp" + res[4]);
+promoiseSetAddress.then(function() {
+    $(window).load(function () {
+        contract.getUser (function(err , res){
+            $("#names").html(res[3] + "&nbsp&nbsp" + res[4]);
+        });
     });
 });
 

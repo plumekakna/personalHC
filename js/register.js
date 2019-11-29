@@ -1,26 +1,27 @@
 //แสดง address ของผู้ใช้
-$(window).load(function () {
-    if (typeof web3.eth.defaultAccount != 'undefined') {
-        $("#addressUser").html(web3.eth.defaultAccount);
-    
-    } else {
-        $("#addressUser").html("กรุณาเชื่อมต่อ MetaMask");
-    }
-});
-
-//ตรวจสอบและแสดงข้อความว่าเคยสมัครแล้วหรือยัง ถ้าสมัครแล้วจะ return ค่าเป็น true
-$(window).load(function () {
-    contract.checkRegister(function(err, result) {
-        if (result == false) {
-            // แสดงบนหน้า Login
-            $("#msgLogin").html("คุณยังไม่เป็นสมาชิก");
+promoiseSetAddress.then(function() {
+    $(window).load(function () {
+        if (typeof web3.eth.defaultAccount != 'undefined') {
+            $("#addressUser").html(web3.eth.defaultAccount);
+        
         } else {
-            // แสดงบนหน้า register
-            $("#msgRegister").html("คุณเป็นสมาชิกแล้ว");
+            $("#addressUser").html("กรุณาเชื่อมต่อ MetaMask");
         }
     });
-});
 
+    //ตรวจสอบและแสดงข้อความว่าเคยสมัครแล้วหรือยัง ถ้าสมัครแล้วจะ return ค่าเป็น true
+    $(window).load(function () {
+        contract.checkRegister(function(err, result) {
+            if (result == false) {
+                // แสดงบนหน้า Login
+                $("#msgLogin").html("คุณยังไม่เป็นสมาชิก");
+            } else {
+                // แสดงบนหน้า register
+                $("#msgRegister").html("คุณเป็นสมาชิกแล้ว");
+            }
+        });
+    });
+});
 
 // register
     $("#buttonRegister").click(function() {
@@ -65,7 +66,7 @@ $('#clickLogin').click(function() {
     });   
 });
  
-// รอ event โหลดจนบันทึกข้อมูลให้เสร็จ แล้วไปยังหน้า detail บุคคล
+// รอ event สำหรับ register โหลดจนบันทึกข้อมูลให้เสร็จ แล้วไปยังหน้า detail บุคคล
 var addDetailUserEvent = contract.addUserEvent({}, 'lastest');
 addDetailUserEvent.watch(function(error, result) {
     if (!error) {
