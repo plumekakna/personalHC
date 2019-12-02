@@ -1,6 +1,7 @@
 // ตัวแปร contract
 var contract;
 var contractResult;
+// กำหนดค่าตัวแปรแบบ Promise
 const promoiseSetAddress = new Promise(function(resovle, reject) {
         //Check providers
         if (typeof web3 !== 'undefined') {
@@ -22,20 +23,69 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
         // Set ABI
         var contractAbi = web3.eth.contract([
             {
-                "constant": true,
+                "constant": false,
                 "inputs": [
                     {
                         "internalType": "string",
-                        "name": "_password",
+                        "name": "_passwordUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_genderUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_fnameUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_lnameUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_addressUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_dateUser",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_diseaseUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_medicineUser",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_phoneUser",
                         "type": "string"
                     }
                 ],
-                "name": "checkLogin",
+                "name": "addUser",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "getUserP2",
                 "outputs": [
                     {
-                        "internalType": "bool",
+                        "internalType": "string",
                         "name": "",
-                        "type": "bool"
+                        "type": "string"
                     }
                 ],
                 "payable": false,
@@ -45,7 +95,7 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
             {
                 "constant": true,
                 "inputs": [],
-                "name": "getUser",
+                "name": "getUserP1",
                 "outputs": [
                     {
                         "internalType": "address",
@@ -98,53 +148,24 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                 "type": "function"
             },
             {
-                "constant": false,
+                "constant": true,
                 "inputs": [
                     {
                         "internalType": "string",
-                        "name": "_passwordUser",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "_genderUser",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "_fnameUser",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "_lnameUser",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "_addressUser",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "_dateUser",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "_diseaseUser",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "_medicineUser",
+                        "name": "_password",
                         "type": "string"
                     }
                 ],
-                "name": "addUser",
-                "outputs": [],
+                "name": "checkLogin",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
                 "payable": false,
-                "stateMutability": "nonpayable",
+                "stateMutability": "view",
                 "type": "function"
             },
             {
@@ -198,115 +219,192 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
             }
         ]);
     // Set Address Transection
-    contract = contractAbi.at('0x15953c8a9dd0a433A5856877af02d6E0422cdcf9');
+    contract = contractAbi.at('0x9764b648cB1dc042587E315C354d63Ee056A607E');
 
     //ABI Result
     var contractAbiResult = web3.eth.contract([
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "int256",
-				"name": "_FPG",
-				"type": "int256"
-			},
-			{
-				"internalType": "int256",
-				"name": "_HbA1C",
-				"type": "int256"
-			},
-			{
-				"internalType": "int256",
-				"name": "_pressureHigh",
-				"type": "int256"
-			},
-			{
-				"internalType": "int256",
-				"name": "_pressureLow",
-				"type": "int256"
-			},
-			{
-				"internalType": "int256",
-				"name": "_TG",
-				"type": "int256"
-			},
-			{
-				"internalType": "int256",
-				"name": "_LDL",
-				"type": "int256"
-			},
-			{
-				"internalType": "int256",
-				"name": "_HDL",
-				"type": "int256"
-			},
-			{
-				"internalType": "int256",
-				"name": "_BMI",
-				"type": "int256"
-			},
-			{
-				"internalType": "int256",
-				"name": "_Albumin",
-				"type": "int256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_height",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_weight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_medicine",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_resultDate",
-				"type": "uint256"
-			}
-		],
-		"name": "addResultUser",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_x",
-				"type": "uint256"
-			}
-		],
-		"name": "getResultUser",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "int256",
-				"name": "",
-				"type": "int256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-]);
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "internalType": "int256",
+                    "name": "_FPG",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "_HbA1C",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "_pressureHigh",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "_pressureLow",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "_TG",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "_LDL",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "_HDL",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "_BMI",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "_Albumin",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_height",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_weight",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_medicine",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_resultDate",
+                    "type": "uint256"
+                }
+            ],
+            "name": "addResultUser",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "id",
+                    "type": "uint256"
+                }
+            ],
+            "name": "addResultrEvent",
+            "type": "event"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "checkHaveLastResult",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "getResultUserLast",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]);
 
     // Set Address Transection Result
-    contractResult = contractAbiResult.at('0x86606C046393ccA66e81E8Bd3Bdd8F31d6d36CAB');
+    contractResult = contractAbiResult.at('0x656d52eE227f66a72a23a8eAEBD83D38Bc062e07');
     //resovle
     resovle('success');   
 })
@@ -315,7 +413,7 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
             if (sessionStorage.getItem("Login") == 'true' && sessionStorage.getItem("password") != 'null') {
                 contract.checkLogin(sessionStorage.getItem("password"), function(err, result) {
                     sessionStorage.setItem("Login", result);
-                    contract.getUser(function(err, result) {
+                    contract.getUserP1(function(err, result) {
                         if (sessionStorage.getItem("Login") == "true"){
                         $('#stillLogin').html("คุณคือ&nbsp" + result[3] + "&nbsp<a href='index.html' onclick='sessionStorage.removeItem(" + '"' + "Login" + '"' + ");sessionStorage.removeItem(" + '"' + "password" + '"' + ");'" + ">logout</a>");
                         } else {
@@ -329,17 +427,50 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                 $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'register.html' + "'" + '">Register</button>');
             }
             console.log(web3.eth.defaultAccount);
-            console.log("Navbar");
         });
 });
 
 
 
 
-
+//คำนวนอายุจาก timestamp
+function calculateAge(_x) {
+    var datenow = new Date();
+    var age = datenow.getTime() - _x;
+    return (Math.floor(age/(1000*60*60*24*365.25)));
+}
 
 // แปลง Date ให้เป็น timestamp
 function convertDateToTimestamp(_time) {
     var nDate = new Date(_time);
     return (nDate.getTime());
+}
+
+// ฟังก์ชันหารด้วย 100
+function divide100(_val) {
+    return (_val / 100);
+}
+
+// แปลง timestamp เป็น วันที่
+function convertTimestampToDate(_timestamp) {
+    var d = new Date(parseInt(_timestamp));
+    var dString = d.toString();
+    var d = dString.substring(8, 10);
+    var m = dString.substring(4, 7);
+    var y = parseInt(dString.substring(11, 15)) + 543;
+    var month = {
+        'Jan': 'มกราคม',
+        'Feb': 'กุมภาพันธ์',
+        'Mar': 'มีนาคม',
+        'Apr': 'เมษายน',
+        'May': 'พฤษภาคม',
+        'Jun': 'มิถุนายน',
+        'Jul': 'กรกฎาคม',
+        'Aug': 'สิงหาคม',
+        'Sep': 'กันยายน',
+        'Oct': 'ตุลาคม',
+        'Nov': 'พฤษจิกายน',
+        'Dec': 'ธันวาคม'
+    };
+    return (d + '&nbsp' + month[m] + '&nbspพ.ศ.&nbsp' + y);
 }

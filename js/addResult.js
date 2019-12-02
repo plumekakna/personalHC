@@ -1,7 +1,7 @@
 // แสดงชื่อ
 promoiseSetAddress.then(function() {
     $(window).load(function () {
-        contract.getUser (function(err , res){
+        contract.getUserP1 (function(err , res){
             $("#names").html(res[3] + "&nbsp&nbsp" + res[4]);
         });
     });
@@ -28,6 +28,18 @@ $('#buttonaddresult').click(function () {
                 console.log(err);
             }   
         });
+        $("#errmsgAddResult").html('<span class="badge badge-primary">Loading...</span>');
+
+});
+
+// รอ event สำหรับ add result โหลดจนบันทึกข้อมูลให้เสร็จ แล้วไปยังหน้า detail บุคคล
+var addResultUserEvent = contractResult.addResultrEvent({}, 'lastest');
+addResultUserEvent.watch(function(error, result) {
+    if (!error) {
+        location.href="index.html";
+    } else {
+        console.log(error);
+    }
 });
 
 // เอาค่าที่เก็บแปลงเป็นทศนิยม 2 ตำแหน่ง แล้วไปคูณร้อย เพื่อเปลี่ยนเป็นจำนวนเต็ม
@@ -38,5 +50,8 @@ function multiply100(_input) {
 
 // คำนวณค่า BMI
 function BMIcalculate(_weight, _height) {
-    return (_weight / ((_height * 100) ** 2));
+    _w = parseFloat(_weight);
+    _h = parseFloat(_height);
+    _bmi = _w / ((_h / 100) ** 2);
+    return (_bmi);
 }

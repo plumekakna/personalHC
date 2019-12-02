@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<!--Main  CSS-->
         <link rel="stylesheet" href="css/main.css">
-        <!-- checkStillLogin js -->
+        <!--main js-->
         <script src="js/checkStillLogin.js"></script>
     </head>
     <body class="bg-light">
@@ -30,18 +30,18 @@
 					<li class="nav-item">
 					  	<a class="nav-link" href="index.html">หน้าแรก</a>
 					</li>
-					<li class="nav-item active">
-					  	<a class="nav-link active" href="detailPersonal.html">ข้อมูลส่วนตัว</a>
+					<li class="nav-item">
+					  	<a class="nav-link" href="detailPersonal.html">ข้อมูลส่วนตัว</a>
 					</li>
 					<li class="nav-item">
-					  	<a class="nav-link" href="resultUser.html">ผลการตวจ</a>
+					  	<a class="nav-link active" href="resultUser.html">ผลการตวจ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="addresult.html">เพิ่มผลการตรวจ</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">โรคแทรกซ้อน</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">โรคแทรกซ้อน</a>
+                    </li>
                 </ul>
 
                 </div>
@@ -60,50 +60,80 @@
 
         <!--Body-->
         <div class="container bg-white border mg_body" style="margin-top:1%; padding: 1%; text-align: center;">
-            <div class="row">
+            <div class="row" id="lastResult">
 
                 <div class="col" align="left">
-                    <h2>ข้อมูลส่วนตัว</h2> </br>
+                    <h2>ผลการตรวจ วันที่ 12 มกราคม 2562</h2> </br>
                     <h4 id="names"></h4>
                 </div>
 
                 <div class="col" align ="left"> </br>
                     <table class="table">
                         <tr> </br> </br>
-                            <th scope="row">อายุ</th>
-                            <td id="age"></td>
+                            <th scope="row">วันที่ (Date)</th>
+                            <td>วันที่ 12 มกราคม 2562</td>                   
                         </tr>
 
                         <tr>
-                            <th scope="row">วันเกิด</th>
-                            <td id="dates"></td>
+                            <th scope="row">ระดับน้ำตาลในเลือด (FPG)</th>
+                            <td></td>                   
                         </tr>
 
                         <tr>
-                            <th scope="row">เพศ</th>
-                            <td id="genders"></td>
+                            <th scope="row">ระดับน้ำตาลเฉลี่ยในเลือด (HbA1C)</th>
+                            <td></td>
+                            
                         </tr>
 
                         <tr>
-                            <th scope="row">ที่อยู่</th>
-                            <td id="addresss"></td>
+                            <th scope="row">ความดัน (Pressure)</th>                            
+                            <td>                               
+                            </td>
                         </tr>
 
                         <tr>
-                            <th scope="row">เบอร์โทร</th>
-                            <td id="phones"></td>
+                            <th scope="row">ไตรกลีเซอไรด์ (TG)</th>
+                            <td></td>
                         </tr>
 
                         <tr>
-                            <th scope="row">โรคประจำตัว</th>
-                            <td id="diseass"></td>
+                            <th scope="row">แอลดีแอล (LDL)</th>
+                            <td></td>
                         </tr>
 
                         <tr>
-                            <th scope="row">ประวัติแพ้ยา</th>
-                            <td id="medics"></td>
+                            <th scope="row">เอชดีแอล (HDL)</th>
+                            <td></td>
                         </tr>
+
+                        <tr>
+                            <th scope="row">BMI</th>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">สารไข่ขาว (Albumin)</th>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">ส่วนสูง ซม. (Height cm.)</th>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">น้ำหนัก กก. (Weight kg.)</th>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">ยาที่ได้รับ (Medicine)</th>
+                            <td></td>
+                        </tr>
+
+
                     </table>
+                    
                 </div>
             </div>
         </div>
@@ -119,5 +149,7 @@
         <script src="js/main.js"></script>
         <!--Showdetail js-->
         <script src="js/showDetailUser.js"></script>
+        <!--homepage js-->
+        <script src="js/homepage.js"></script>
     </body>
 </html>

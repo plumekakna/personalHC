@@ -31,7 +31,17 @@ promoiseSetAddress.then(function() {
             contract.checkRegister(function(err, result) {
                 if (result == false) {
                     // เพิ่มข้อมูลผู้ใช้
-                    contract.addUser($('#password').val(), $('#gender').val(), $('#fname').val(), $('#lname').val(), $('#address').val(), convertDateToTimestamp($("#birthDate").val()), $('#disease').val(), $('#medicine').val(), (err, res) => { //Have Error
+                    contract.addUser(
+                        $('#password').val(), 
+                        $('#gender').val(), 
+                        $('#fname').val(), 
+                        $('#lname').val(), 
+                        $('#address').val(), 
+                        convertDateToTimestamp($("#birthDate").val()), 
+                        $('#disease').val(), 
+                        $('#medicine').val(),
+                        $('#phoneNumber').val(), 
+                        (err, res) => { //Have Error
                         if (err) {
                             console.log(err);
                         }
@@ -52,14 +62,14 @@ promoiseSetAddress.then(function() {
     });
 
 
-// เก็บ Session still login
+// เก็บ Session still login เมื่อทำการ Login
 $('#clickLogin').click(function() {
     contract.checkLogin($('#userLogin').val(),  function(err, result) {
         sessionStorage.setItem("Login", result);
         console.log(sessionStorage.getItem("Login"));
         if (sessionStorage.getItem("Login") == "true") {
             sessionStorage.setItem("password", $('#userLogin').val());
-            location.href='detailPersonal.html';
+            location.href='index.html';
         } else {
             $("#errmsgLogin").html('<span class="badge badge-danger">รหัสผ่านไม่ถูกต้อง</span>');
         }
@@ -75,3 +85,5 @@ addDetailUserEvent.watch(function(error, result) {
         console.log(error);
     }
 });
+
+

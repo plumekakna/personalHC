@@ -69,6 +69,11 @@
                 <div class="col" align ="left"> </br>
                     <table class="table">
                         <tr> </br> </br>
+                            <th scope="row">อายุ</th>
+                            <td id="age"></td>
+                        </tr>
+
+                        <tr>
                             <th scope="row">วันเกิด</th>
                             <td id="dates"></td>
                         </tr>
@@ -81,6 +86,11 @@
                         <tr>
                             <th scope="row">ที่อยู่</th>
                             <td id="addresss"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">เบอร์โทร</th>
+                            <td id="phones"></td>
                         </tr>
 
                         <tr>
@@ -98,7 +108,7 @@
         </div>
 
         <div class="container bg-white border mg_body" style="margin-top:1%; padding: 1%; text-align: center;">
-            <div class="row">
+            <div class="row" id="lastResult">
 
                 <div class="col" align="left">
                     <h2>ผลการตรวจครั้งล่าสุด</h2> </br>
@@ -109,61 +119,66 @@
                     <table class="table">
                         <tr> </br> </br>
                             <th scope="row">วันที่ (Date)</th>
-                            <td>26 / 11 /2562</td>                   
+                            <td id="showDateResult"></td>                   
                         </tr>
 
                         <tr>
                             <th scope="row">ระดับน้ำตาลในเลือด (FPG)</th>
-                            <td>100 มก./ดล.</td>                   
+                            <td id="showFPGResult"></td>                   
                         </tr>
 
                         <tr>
                             <th scope="row">ระดับน้ำตาลเฉลี่ยในเลือด (HbA1C)</th>
-                            <td>6.5 %</td>
+                            <td id="showHbA1CResult"></td>
                             
                         </tr>
 
                         <tr>
                             <th scope="row">ความดัน (Pressure)</th>
                             
-                            <td>
-                                130/80 มม./ปรอท
+                            <td id="showPressureResult">
+                                
                             </td>
                         </tr>
 
                         <tr>
                             <th scope="row">ไตรกลีเซอไรด์ (TG)</th>
-                            <td>150 มก./ดล.</td>
+                            <td id="showTGResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">แอลดีแอล (LDL)</th>
-                            <td>100 มก./ดล. </td>
+                            <td id="showLDLResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">เอชดีแอล (HDL)</th>
-                            <td>40 มก./ดล.</td>
+                            <td id="showHDLResult"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">BMI</th>
+                            <td id="showBMIResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">สารไข่ขาว (Albumin)</th>
-                            <td>30 มก./ลิตร</td>
+                            <td id="showAlbuminResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">ส่วนสูง ซม. (Height cm.)</th>
-                            <td>170 เซนติเมตร</td>
+                            <td id="showHeightResult"></td>
                         </tr>
 
                         <tr>
-                            <th scope="row">น้ำหนัก (Weight)</th>
-                            <td>110 กิโลกรัม</td>
+                            <th scope="row">น้ำหนัก กก. (Weight kg.)</th>
+                            <td id="showWeightResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">ยาที่ได้รับ (Medicine)</th>
-                            <td>Insulin</td>
+                            <td id="showMedicineResult"></td>
                         </tr>
 
 
@@ -184,5 +199,7 @@
         <script src="js/main.js"></script>
         <!--Showdetail js-->
         <script src="js/showDetailUser.js"></script>
+        <!--homepage js-->
+        <script src="js/homepage.js"></script>
     </body>
 </html>
