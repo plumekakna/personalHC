@@ -51,9 +51,9 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                         "type": "string"
                     },
                     {
-                        "internalType": "uint256",
+                        "internalType": "int256",
                         "name": "_dateUser",
-                        "type": "uint256"
+                        "type": "int256"
                     },
                     {
                         "internalType": "string",
@@ -78,74 +78,17 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                 "type": "function"
             },
             {
-                "constant": true,
-                "inputs": [],
-                "name": "getUserP2",
-                "outputs": [
+                "anonymous": false,
+                "inputs": [
                     {
+                        "indexed": false,
                         "internalType": "string",
-                        "name": "",
+                        "name": "fname",
                         "type": "string"
                     }
                 ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [],
-                "name": "getUserP1",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "",
-                        "type": "string"
-                    }
-                ],
-                "payable": false,
-                "stateMutability": "view",
-                "type": "function"
+                "name": "addUserEvent",
+                "type": "event"
             },
             {
                 "constant": true,
@@ -205,21 +148,78 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                 "type": "function"
             },
             {
-                "anonymous": false,
-                "inputs": [
+                "constant": true,
+                "inputs": [],
+                "name": "getUserP1",
+                "outputs": [
                     {
-                        "indexed": false,
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
                         "internalType": "string",
-                        "name": "fname",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
                         "type": "string"
                     }
                 ],
-                "name": "addUserEvent",
-                "type": "event"
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "getUserP2",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
             }
         ]);
     // Set Address Transection
-    contract = contractAbi.at('0x9764b648cB1dc042587E315C354d63Ee056A607E');
+    contract = contractAbi.at('0x37cE8719799590F887d2017432B5fBeD45fdD483');
 
     //ABI Result
     var contractAbiResult = web3.eth.contract([
@@ -406,7 +406,7 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
     // Set Address Transection Result
     contractResult = contractAbiResult.at('0x656d52eE227f66a72a23a8eAEBD83D38Bc062e07');
     //resovle
-    resovle('success');   
+    resovle('success');  
 })
 .then(function() {
         $(window).load(function () {
@@ -474,3 +474,5 @@ function convertTimestampToDate(_timestamp) {
     };
     return (d + '&nbsp' + month[m] + '&nbspพ.ศ.&nbsp' + y);
 }
+
+

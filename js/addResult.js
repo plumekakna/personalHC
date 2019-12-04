@@ -29,7 +29,6 @@ $('#buttonaddresult').click(function () {
             }   
         });
         $("#errmsgAddResult").html('<span class="badge badge-primary">Loading...</span>');
-
 });
 
 // รอ event สำหรับ add result โหลดจนบันทึกข้อมูลให้เสร็จ แล้วไปยังหน้า detail บุคคล
