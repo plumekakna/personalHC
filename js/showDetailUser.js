@@ -1,5 +1,5 @@
 // แสดงข้อมูลส่วนตัว
-promoiseSetAddress.then(function() {
+promiseSetAddress.then(function() {
     $(window).load(function () {
         // แสดงข้อมูลส่วนตัว User Part1
         contract.getUserP1(function(err, res){

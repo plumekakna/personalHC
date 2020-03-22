@@ -1,5 +1,5 @@
 // แสดงชื่อ
-promoiseSetAddress.then(function() {
+promiseSetAddress.then(function() {
     $(window).load(function () {
         contract.getUserP1 (function(err , res){
             $("#names").html(res[3] + "&nbsp&nbsp" + res[4]);
@@ -9,30 +9,34 @@ promoiseSetAddress.then(function() {
 
 // บันทึกผลการตรวจ
 $('#buttonaddresult').click(function () {
-    contractResult.addResultUser(
-        multiply100($('#fpgvalue').val()),
-        multiply100($('#hbavalue').val()), 
-        multiply100($('#preshighvalue').val()), 
-        multiply100($('#preslowvalue').val()),
-        multiply100($('#tgvalue').val()), 
-        multiply100($('#ldlvalue').val()), 
-        multiply100($('#hdlvalue').val()), 
-        multiply100(BMIcalculate($('#weivalue').val(), $('#heivalue').val())),
-        multiply100($('#albvalue').val()),
-        multiply100($('#heivalue').val()),
-        multiply100($('#weivalue').val()),
-        $('#medvalue').val(),
-        convertDateToTimestamp($('#datevalue').val()),
-        (err, res) => { //Have Error
-            if (err) {
-                console.log(err);
-            }   
-        });
-        $("#errmsgAddResult").html('<span class="badge badge-primary">Loading...</span>');
+    var r = confirm("ข้อมูลถูกต้องแล้วใช่ไหม?");
+    if (r == true) {
+        contract.addResultUser(
+            multiply100($('#fpgvalue').val()),
+            multiply100($('#hbavalue').val()), 
+            multiply100($('#preshighvalue').val()), 
+            multiply100($('#preslowvalue').val()),
+            multiply100($('#tgvalue').val()), 
+            multiply100($('#ldlvalue').val()), 
+            multiply100($('#hdlvalue').val()), 
+            multiply100(BMIcalculate($('#weivalue').val(), $('#heivalue').val())),
+            multiply100($('#albvalue').val()),
+            multiply100($('#heivalue').val()),
+            multiply100($('#weivalue').val()),
+            $('#medvalue').val(),
+            convertDateToTimestamp($('#datevalue').val()),
+            (err, res) => { //Have Error
+                if (err) {
+                    console.log(err);
+                }   
+            });
+            $("#errmsgAddResult").html('<div class="loader"></div>');
+    }
+    
 });
 
 // รอ event สำหรับ add result โหลดจนบันทึกข้อมูลให้เสร็จ แล้วไปยังหน้า detail บุคคล
-var addResultUserEvent = contractResult.addResultrEvent({}, 'lastest');
+var addResultUserEvent = contract.addResultrEvent({}, 'lastest');
 addResultUserEvent.watch(function(error, result) {
     if (!error) {
         location.href="index.html";

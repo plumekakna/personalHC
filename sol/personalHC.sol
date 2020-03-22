@@ -11,10 +11,11 @@ contract personalUser{
         string fnameUser;
         string lnameUser;
         string addressUser;
-        uint dateUser;
+        int dateUser;
         string diseaseUser;
         string medicineUser;
         string phoneUser;
+        
     }
     
     //count user
@@ -34,7 +35,7 @@ contract personalUser{
         string memory _fnameUser, 
         string memory _lnameUser,
         string memory _addressUser,
-        uint _dateUser,
+        int _dateUser,
         string memory _diseaseUser,
         string memory _medicineUser,
         string memory _phoneUser
@@ -65,7 +66,7 @@ contract personalUser{
         string memory,
         string memory, 
         string memory, 
-        uint, 
+        int, 
         string memory, 
         string memory, 
         string memory
@@ -111,9 +112,8 @@ contract personalUser{
 }
 
 
-
 // Contract Result !!!!!!!!!!!!!!
-contract Result {
+contract Result is personalUser {
     
     // struct result
     struct ResultUser{
@@ -129,6 +129,8 @@ contract Result {
         string medicine;
         uint resultDate;
         bool keep;
+        uint timesPerYear;
+        bool insurance;
         
     }
     
@@ -235,7 +237,28 @@ contract Result {
                 resultUser[msg.sender][_x].medicine = _medicine;
                 resultUser[msg.sender][_x].resultDate = _resultDate;
                 resultUser[msg.sender][_x].keep = true;
-                 
+                
+                // count times per year
+                if (resultUser[msg.sender][_x - 1].timesPerYear < 4) {
+                    resultUser[msg.sender][_x].timesPerYear = resultUser[msg.sender][_x - 1].timesPerYear + 1;
+                } else {
+                    resultUser[msg.sender][_x].timesPerYear = 1;
+                }
+                
+                // compare for insurance
+                if (compareFPG(_x) == 1
+                && compareHbA1c(_x) == 1
+                && comparePressure(_x) == 1
+                && compareTG(_x) == 1
+                && compareLDL(_x) == 1
+                && compareHDL(_x) == 1 
+                && compareAlbumin(_x) == 1
+                ) {
+                    resultUser[msg.sender][_x].insurance = true;
+                } else {
+                    resultUser[msg.sender][_x].insurance = false;
+                }
+                
                 emit addResultrEvent(_x);
                 break;
             } else {
@@ -243,6 +266,201 @@ contract Result {
             }
            
         }
+        
     }
     
+        //count result for show list 
+        function showListResult() public view returns(uint) {
+            uint _x = 1;
+            while (true) {
+                if (resultUser[msg.sender][_x].keep == true) {
+                    _x++;
+                } else {
+                    break;
+                }
+            }
+            _x = _x - 1;
+            return(_x);
+        }
+        
+    // Get result User   
+    // get result per id user (part1)
+    function getResultUserPerId1(uint _id) 
+    public view 
+    returns (
+    uint,
+        uint,
+        int,
+        int,
+        int,
+        int
+        ) {
+            return (
+                resultUser[msg.sender][_id].idResult,
+                resultUser[msg.sender][_id].resultDate,
+                resultUser[msg.sender][_id].FPG,
+                resultUser[msg.sender][_id].HbA1C,
+                resultUser[msg.sender][_id].pressure.pressureHigh,
+                resultUser[msg.sender][_id].pressure.pressureLow
+                );
+    }
+    
+     // get result per id user (part2)
+    function getResultUserPerId2(uint _id) 
+    public view 
+    returns (
+        int,
+        int,
+        int,
+        int,
+        int
+        ) {
+            return (
+                resultUser[msg.sender][_id].fat.TG,
+                resultUser[msg.sender][_id].fat.LDL,
+                resultUser[msg.sender][_id].fat.HDL,
+                resultUser[msg.sender][_id].BMI,
+                resultUser[msg.sender][_id].Albumin
+                );
+    }
+    
+    
+    // get result per id user (part3)
+    function getResultUserPerId3(uint _id) 
+    public view 
+    returns (
+        uint,
+        uint,
+        string memory
+        ) {
+            return (
+                resultUser[msg.sender][_id].height,
+                resultUser[msg.sender][_id].weight,
+                resultUser[msg.sender][_id].medicine
+                );
+    }
+    
+   
+    // Compare Result !!!!!!
+    /*
+    0 = lower
+    1 = good
+    2 = higher
+    
+    *** คูณ100
+    */
+    
+    // FPG
+    function compareFPG(uint _id) public view returns(uint) {
+        uint _result;
+        int _value = resultUser[msg.sender][_id].FPG;
+        if (_value < 12000) {
+            _result = 0;
+        } else if (_value > 14000) {
+            _result = 2;
+        } else {
+            _result = 1;
+        }
+        return (_result);
+    }
+    
+    // HbA1c
+    function compareHbA1c(uint _id) public view returns(uint)  {
+        uint _result;
+        int _value = resultUser[msg.sender][_id].HbA1C;
+        if (_value < 700) {
+            _result = 1;
+        } else {
+            _result = 2;
+        }
+        return (_result);
+    }
+    
+    // pressure
+    function comparePressure(uint _id) public view returns(uint) {
+        uint _result;
+        int _value1 = resultUser[msg.sender][_id].pressure.pressureHigh;
+        int _value2 = resultUser[msg.sender][_id].pressure.pressureLow;
+        if (_value1 < 13000 && _value2 < 8000) {
+            _result = 1;
+        } else {
+            _result = 2;
+        }
+        return (_result);
+    }
+    
+    // TG
+    function compareTG(uint _id) public view returns(uint)  {
+        uint _result;
+        int _value = resultUser[msg.sender][_id].fat.TG;
+        if (_value < 700) {
+            _result = 1;
+        } else {
+            _result = 2;
+        }
+        return (_result);
+    }
+    
+    // LDL
+    function compareLDL(uint _id) public view returns(uint) {
+        uint _result;
+        int _value = resultUser[msg.sender][_id].fat.LDL;
+        if (_value < 10000) {
+            _result = 1;
+        } else {
+            _result = 2;
+        }
+        return (_result);
+    }
+    
+    // HDL
+    function compareHDL(uint _id) public view returns(uint) {
+        uint _result;
+        int _value = resultUser[msg.sender][_id].fat.LDL;
+        string memory _gender = user[msg.sender].genderUser;
+        string memory _male = 'ชาย';
+        if (keccak256(abi.encodePacked(_gender)) == keccak256(abi.encodePacked(_male))) {
+            if (_value > 4000) {
+                _result = 1;
+            } else {
+                _result = 0;
+            }
+        } else {
+            if (_value > 5000) {
+                _result = 1;
+            } else {
+                _result = 0;
+            }
+        }
+        return(_result);
+    }
+    
+    // Albumin
+    function compareAlbumin(uint _id) public view returns(uint) {
+        uint _result;
+        int _value = resultUser[msg.sender][_id].Albumin;
+        if (_value < 3000) {
+            _result = 1;
+        } else {
+            _result = 2;
+        }
+        return(_result);
+    }
+
+    // BMI    
+    function compareBmi(unit_id) public view returns(nint){
+        uint _result;
+        int _value = resultUser[msg.sender][_id].BMI;
+        if (_value < 1850){
+            _result = 0;
+        } else if (_value > 2300){
+            result = 2;
+        } else {
+            result = 1;
+        }
+        return (_result);
+    }
+   
 }
+
+

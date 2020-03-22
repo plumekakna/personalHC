@@ -1,8 +1,7 @@
 // ตัวแปร contract
 var contract;
-var contractResult;
 // กำหนดค่าตัวแปรแบบ Promise
-const promoiseSetAddress = new Promise(function(resovle, reject) {
+const promiseSetAddress = new Promise(function(resovle, reject) {
         //Check providers
         if (typeof web3 !== 'undefined') {
             web3 = new Web3(window.ethereum)
@@ -22,6 +21,107 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
 
         // Set ABI
         var contractAbi = web3.eth.contract([
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "addResultrEvent",
+                "type": "event"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "fname",
+                        "type": "string"
+                    }
+                ],
+                "name": "addUserEvent",
+                "type": "event"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "internalType": "int256",
+                        "name": "_FPG",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "_HbA1C",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "_pressureHigh",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "_pressureLow",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "_TG",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "_LDL",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "_HDL",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "_BMI",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "_Albumin",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_height",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_weight",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_medicine",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_resultDate",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "addResultUser",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
             {
                 "constant": false,
                 "inputs": [
@@ -78,17 +178,19 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                 "type": "function"
             },
             {
-                "anonymous": false,
-                "inputs": [
+                "constant": true,
+                "inputs": [],
+                "name": "checkHaveLastResult",
+                "outputs": [
                     {
-                        "indexed": false,
-                        "internalType": "string",
-                        "name": "fname",
-                        "type": "string"
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
                     }
                 ],
-                "name": "addUserEvent",
-                "type": "event"
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
             },
             {
                 "constant": true,
@@ -131,6 +233,174 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                 "inputs": [
                     {
                         "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "compareAlbumin",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "compareBmi",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "compareFPG",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "compareHDL",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "compareHbA1c",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "compareLDL",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "comparePressure",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "compareTG",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
                         "name": "",
                         "type": "uint256"
                     }
@@ -141,6 +411,199 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                         "internalType": "address",
                         "name": "",
                         "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "getResultUserLast",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "getResultUserPerId1",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "getResultUserPerId2",
+                "outputs": [
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "",
+                        "type": "int256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "getResultUserPerId3",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
                     }
                 ],
                 "payable": false,
@@ -216,195 +679,26 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                 "payable": false,
                 "stateMutability": "view",
                 "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "showListResult",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
             }
         ]);
     // Set Address Transection
-    contract = contractAbi.at('0x37cE8719799590F887d2017432B5fBeD45fdD483');
+    contract = contractAbi.at('0x578060C278593E105681B797c0cF4aC539c534D3');
 
-    //ABI Result
-    var contractAbiResult = web3.eth.contract([
-        {
-            "constant": false,
-            "inputs": [
-                {
-                    "internalType": "int256",
-                    "name": "_FPG",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "_HbA1C",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "_pressureHigh",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "_pressureLow",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "_TG",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "_LDL",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "_HDL",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "_BMI",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "_Albumin",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_height",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_weight",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_medicine",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_resultDate",
-                    "type": "uint256"
-                }
-            ],
-            "name": "addResultUser",
-            "outputs": [],
-            "payable": false,
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": false,
-                    "internalType": "uint256",
-                    "name": "id",
-                    "type": "uint256"
-                }
-            ],
-            "name": "addResultrEvent",
-            "type": "event"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "checkHaveLastResult",
-            "outputs": [
-                {
-                    "internalType": "bool",
-                    "name": "",
-                    "type": "bool"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "getResultUserLast",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "int256",
-                    "name": "",
-                    "type": "int256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        }
-    ]);
-
-    // Set Address Transection Result
-    contractResult = contractAbiResult.at('0x656d52eE227f66a72a23a8eAEBD83D38Bc062e07');
     //resovle
     resovle('success');  
 })
@@ -419,12 +713,12 @@ const promoiseSetAddress = new Promise(function(resovle, reject) {
                         } else {
                             //ลบ session password
                             sessionStorage.removeItem("password");
-                            $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'register.html' + "'" + '">Register</button>');
+                            $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'contract.html' + "'" + '">Register</button>');
                         }
                     });  
                 });     
             } else {
-                $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'register.html' + "'" + '">Register</button>');
+                $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'contract.html' + "'" + '">Register</button>');
             }
             console.log(web3.eth.defaultAccount);
         });
@@ -450,6 +744,18 @@ function convertDateToTimestamp(_time) {
 function divide100(_val) {
     return (_val / 100);
 }
+// ฟังก์ชันหารด้วย 100 แปลงค่า 0 1 2
+function convertResult(_num123) {
+    if (_num123 == 0){
+        return ('<span style="color:orange">ต่ำกว่ามาตราฐาน </span>')
+    }
+    else if (_num123 == 1) {
+        return ('<span style="color:green">ปกติ </span>')
+    }
+    else {
+        return ('<span style="color:red">สูงกว่ามาตราฐาน </span>')
+    }
+}
 
 // แปลง timestamp เป็น วันที่
 function convertTimestampToDate(_timestamp) {
@@ -474,5 +780,6 @@ function convertTimestampToDate(_timestamp) {
     };
     return (d + '&nbsp' + month[m] + '&nbspพ.ศ.&nbsp' + y);
 }
+
 
 

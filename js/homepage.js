@@ -1,11 +1,11 @@
 // แสดงผลการตรวจล่าสุดในหน้า index
-promoiseSetAddress.then(function() {
+promiseSetAddress.then(function() {
     $(window).load(function () {
         // ใช้ฟังก์ชันเช็คว่ามีผลการตรวจไหม
-        contractResult.checkHaveLastResult(function(err, result) {
+        contract.checkHaveLastResult(function(err, result) {
             if (result) {
                 // เรียกข้อมูลผลการผลการตรวจล่าสุด
-                contractResult.getResultUserLast(function(err, result) {
+                contract.getResultUserLast(function(err, result) {
                     $('#showDateResult').html(convertTimestampToDate(result[0]));
                     $('#showFPGResult').html(divide100(result[1]) + '&nbspมก./ดล.');
                     $('#showHbA1CResult').html(divide100(result[2]) + '&nbsp%');

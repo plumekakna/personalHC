@@ -1,8 +1,13 @@
 //แสดง address ของผู้ใช้
-promoiseSetAddress.then(function() {
+promiseSetAddress.then(function() {
     $(window).load(function () {
         if (typeof web3.eth.defaultAccount != 'undefined') {
-            $("#addressUser").html(web3.eth.defaultAccount);
+            contract.getUserP1(function(err, res){
+                $("#namesUser").html(res[3] + '&nbsp&nbsp' + res[4]);       
+            });
+
+            $("#addressUser").html(web3.eth.accounts[0]);
+            
         
         } else {
             $("#addressUser").html("กรุณาเชื่อมต่อ MetaMask");
@@ -30,26 +35,30 @@ promoiseSetAddress.then(function() {
             console.log("password match");
             contract.checkRegister(function(err, result) {
                 if (result == false) {
+                    var r = confirm("ข้อมูลถูกต้องแล้วใช่ไหม?");
                     // เพิ่มข้อมูลผู้ใช้
-                    contract.addUser(
-                        $('#password').val(), 
-                        $('#gender').val(), 
-                        $('#fname').val(), 
-                        $('#lname').val(), 
-                        $('#address').val(), 
-                        convertDateToTimestamp($("#birthDate").val()), 
-                        $('#disease').val(), 
-                        $('#medicine').val(),
-                        $('#phoneNumber').val(), 
-                        (err, res) => { //Have Error
-                        if (err) {
-                            console.log(err);
-                        }
-                    $("#errmsgRegister").html('<span class="badge badge-primary">Loading...</span>');
-                    sessionStorage.setItem("Login", 'true');
-                    sessionStorage.setItem("password", $('#password').val());
-                    console.log('add success');
-                    });
+                    if (r == true) {              
+                        contract.addUser(
+                            $('#password').val(), 
+                            $('#gender').val(), 
+                            $('#fname').val(), 
+                            $('#lname').val(), 
+                            $('#address').val(), 
+                            convertDateToTimestamp($("#birthDate").val()), 
+                            $('#disease').val(), 
+                            $('#medicine').val(),
+                            $('#phoneNumber').val(), 
+                            (err, res) => { //Have Error
+                            if (err) {
+                                console.log(err);
+                            }
+                        //$("#errmsgRegister").html('<span class="badge badge-primary">Loading...</span>');
+                        $("#errmsgRegister").html('<div class="loader"></div>');
+                        sessionStorage.setItem("Login", 'true');
+                        sessionStorage.setItem("password", $('#password').val());
+                        console.log('add success');
+                        });
+                    }
                 } else {
                     // แสดงข้อความว่าเคยสมัครแล้ว
                     $("#errmsgRegister").html('<br><span class="badge badge-danger">คุณเคยสมัครแล้ว</span>');
