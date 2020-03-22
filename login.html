@@ -5,7 +5,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--Bootstrap v4.3.1-->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!--Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Maitree:500&display=swap" rel="stylesheet">
 		<!--Main  CSS-->
         <link rel="stylesheet" href="css/main.css">	
 
@@ -38,9 +40,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="addresult.html">เพิ่มผลการตรวจ</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">โรคแทรกซ้อน</a>
-                </li>
                 </ul>
 
                 </div>
@@ -57,16 +56,15 @@
         
 
         <!--Body-->
-        <div class="container bg-white border mg_login" style="margin-top:2%; padding: 2%;">
+        <div class="container bg-white border mg_login" style="margin-top:2%; padding: 2% 10% 2% 10%;">
             <div id="msgLogin" class="d-flex justify-content-center text-warning"></div>
             <div class="d-flex justify-content-center">
                 <h2>เข้าสู่ระบบ</h2>
             </div>
             <hr>
             
-            <h5>Address : <span id="addressUser"></span></h5>
+            <h5 >คุณคือ : <span id="namesUser"></span></h5>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Password:</label>
                   <input type="password" class="form-control" placeholder="password" id="userLogin">
                 </div>
                 <div id="errmsgLogin"></div>

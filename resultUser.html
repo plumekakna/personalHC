@@ -5,7 +5,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--Bootstrap v4.3.1-->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!--Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Maitree:500&display=swap" rel="stylesheet"> 
 		<!--Main  CSS-->
         <link rel="stylesheet" href="css/main.css">
         <!-- checkStillLogin js -->
@@ -39,9 +41,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="addresult.html">เพิ่มผลการตรวจ</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">โรคแทรกซ้อน</a>
-                </li>
                 </ul>
 
                 </div>
@@ -64,29 +63,10 @@
                 <div class="col">
                     <div><h2>ผลการตรวจ</h2></div>
                     <div>
-                    <table class="table">
-                        <tr> </br>
-                            <th scope="row"><a href="showOneResult.html">วันที่ 12 มกราคม 2562</a></th>                 
-                        </tr>
-
-                        <tr>
-                            <th scope="row"><a href="#">วันที่ 26 เมษายน 2562</a></th>                
-                        </tr>
-
-                        <tr>
-                            <th scope="row"><a href="#">วันที่ 10 มิถุนายน 2562</a></th>    
-                        </tr>
-
-                        <tr>
-                            <th scope="row"><a href="#">วันที่ 12 กรกฎาคม 2562</a></th> 
-                        </tr>
-
-                        <tr>
-                            <th scope="row"><a href="#">วันที่ 03 สิงหาคม 2562</a></th> 
-                        </tr>
+                    <table class="table" id="listResult">
+                        <br>
                     </table>
                 </div>
-                    
                 </div>
             </div>
         </div>
@@ -102,5 +82,7 @@
         <script src="js/main.js"></script>
         <!--Showdetail js-->
         <script src="js/showDetailUser.js"></script>
+        <!--showAllResult js-->
+        <script src="js/showListResult.js"></script>
     </body>
 </html>

@@ -5,7 +5,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--Bootstrap v4.3.1-->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!--Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Maitree:500&display=swap" rel="stylesheet"> 
 		<!--Main  CSS-->
         <link rel="stylesheet" href="css/main.css">
         <!--main js-->
@@ -39,9 +41,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="addresult.html">เพิ่มผลการตรวจ</a>
                   </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">โรคแทรกซ้อน</a>
-                    </li>
                 </ul>
 
                 </div>
@@ -59,76 +58,84 @@
         
 
         <!--Body-->
-        <div class="container bg-white border mg_body" style="margin-top:1%; padding: 1%; text-align: center;">
-            <div class="row">
+        <div class="container bg-white border mg_body" style="margin-top:1%; padding: 2%; text-align: center;">
+            
 
-                <div class="col" align="left">
-                    <h2>ผลการตรวจ วันที่ 12 มกราคม 2562</h2> </br>
-                    <h4 id="names"></h4>
+                <div  style="text-align: left;">
+                    <h2 id="dateOneResult1">ผลการตรวจ วันที่ 12 มกราคม 2562</h2> </br>
+                    <h4 id="names" class="pl-3"></h4>
                 </div>
 
-                <div class="col" align ="left"> </br>
+                <div class="col" style="text-align: left;"> </br>
                     <table class="table">
                         <tr> </br> </br>
                             <th scope="row">วันที่ (Date)</th>
-                            <td>วันที่ 12 มกราคม 2562</td>                   
+                            <td id="dateOneResult"></td>    
+                            <th scope="row">สถานะ</th>               
                         </tr>
 
                         <tr>
                             <th scope="row">ระดับน้ำตาลในเลือด (FPG)</th>
-                            <td></td>                   
+                            <td id="FPGOneResult"></td>
+                            <td id="FPGResult"></td>                    
                         </tr>
 
                         <tr>
                             <th scope="row">ระดับน้ำตาลเฉลี่ยในเลือด (HbA1C)</th>
-                            <td></td>
+                            <td id="HbA1cOneResult"></td>
+                            <td id="HbA1cResult"></td>
                             
                         </tr>
 
                         <tr>
                             <th scope="row">ความดัน (Pressure)</th>                            
-                            <td>                               
-                            </td>
+                            <td id="pressureOneResult"></td>
+                            <td id="pressureResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">ไตรกลีเซอไรด์ (TG)</th>
-                            <td></td>
+                            <td id="TGOneResult"></td>
+                            <td id="TGResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">แอลดีแอล (LDL)</th>
-                            <td></td>
+                            <td id="LDLOneResult"></td>
+                            <td id="LDLResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">เอชดีแอล (HDL)</th>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">BMI</th>
-                            <td></td>
+                            <td id="HDLOneResult"></td>
+                            <td id="HDLResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">สารไข่ขาว (Albumin)</th>
-                            <td></td>
+                            <td id="AlbuminOneResult"></td>
+                            <td id="AlbuminResult"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">BMI</th>
+                            <td id="BMIOneResult"></td>
+                            <td id="BMIResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">ส่วนสูง ซม. (Height cm.)</th>
-                            <td></td>
+                            <td id="HeightOneResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">น้ำหนัก กก. (Weight kg.)</th>
-                            <td></td>
+                            <td id="WeightOneResult"></td>
                         </tr>
 
                         <tr>
                             <th scope="row">ยาที่ได้รับ (Medicine)</th>
-                            <td></td>
+                            <td id="MedicineOneResult"></td>
                         </tr>
 
 
@@ -136,7 +143,7 @@
                     
                 </div>
             </div>
-        </div>
+        
 
 
         <!--jQuery-->
@@ -149,7 +156,7 @@
         <script src="js/main.js"></script>
         <!--Showdetail js-->
         <script src="js/showDetailUser.js"></script>
-        <!--homepage js-->
-        <script src="js/homepage.js"></script>
+        <!--showOneResult js-->
+        <script src="js/showOneResult.js"></script>
     </body>
 </html>

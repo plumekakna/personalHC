@@ -1,0 +1,37 @@
+
+  <html>
+    <head>
+    </head>
+    <body>
+    <form name="checkoutForm" method="POST" action="checkout.php">
+      <script type="text/javascript" src="https://cdn.omise.co/omise.js"
+        data-key="pkey_test_5iy8mypoy2a7wq1hnu2"
+        data-image="http://bit.ly/customer_image"
+        data-frame-label="Merchant site name"
+        data-button-label="Pay now"
+        data-submit-label="Submit"
+        data-location="no"
+        data-amount="10025"
+        data-currency="thb"
+        
+        >
+         <tr>
+                            <th scope="row">วันที่จ่าย</th>
+                            <td id="expDate"></td>
+                        </tr>
+        
+        
+      </script>
+
+      <div>
+        <button type="button" name="button" id="button"   onclick="window.location='https://link.omise.co/61A7717E'"  > 5000 </button> <br>
+        <button type="button" name="button" id="button"   onclick="window.location='https://link.omise.co/C275BF7D'"  > 4000 </button>
+      </div>
+      <!--the script will render <input type="hidden" name="omiseToken"> for you automatically-->
+    </form>
+
+    <!-- data-key="YOUR_PUBLIC_KEY" -->
+
+    
+    </body>
+</html>

@@ -5,7 +5,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--Bootstrap v4.3.1-->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!--Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Maitree:500&display=swap" rel="stylesheet">
 		<!--Main  CSS-->
         <link rel="stylesheet" href="css/main.css">
         <!--main js-->
@@ -39,9 +41,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="addresult.html">เพิ่มผลการตรวจ</a>
                   </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">โรคแทรกซ้อน</a>
-                    </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="omise.html">จ่ายเงิน</a>
+              </li>
                 </ul>
 
                 </div>
@@ -59,14 +61,14 @@
         
 
         <!--Body-->
-        <div class="container bg-white border mg_body" style="margin-top:1%; padding: 1%; text-align: center;">
+        <div class="container bg-white border mg_body" style="margin-top:1%; padding: 2%; text-align: center;">
             <div class="row">
 
-                <div class="col" align="left">
-                    <h4 id="names"></h4>
+                <div class="col" style="text-align: left;">
+                    <h4 id="names" class="pl-3"></h4>
                 </div>
 
-                <div class="col" align ="left"> </br>
+                <div class="col" style="text-align: left;"> </br>
                     <table class="table">
                         <tr> </br> </br>
                             <th scope="row">อายุ</th>
@@ -102,93 +104,49 @@
                             <th scope="row">ประวัติแพ้ยา</th>
                             <td id="medics"></td>
                         </tr>
+
+                        <tr>
+                            <th scope="row">วันที่จ่าย</th>
+                            <td id="expDate"></td>
+                        </tr>
+                        
                     </table>
                 </div>
             </div>
         </div>
 
-        <div class="container bg-white border mg_body" style="margin-top:1%; padding: 1%; text-align: center;">
+        <div class="container bg-white border mg_body" style="margin-top:1%; padding: 2%; text-align: center;">
             <div class="row" id="lastResult">
 
-                <div class="col" align="left">
-                    <h2>ผลการตรวจครั้งล่าสุด</h2> </br>
+                <div class="col" style="text-align: left;">
+                    <h2>เงื่อนไขการชำระเบี้ยประกัน</h2> </br>
                     <h4 id="names"></h4>
                 </div>
 
-                <div class="col" align ="left"> </br>
-                    <table class="table">
-                        <tr> </br> </br>
-                            <th scope="row">วันที่ (Date)</th>
-                            <td id="showDateResult"></td>                   
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ระดับน้ำตาลในเลือด (FPG)</th>
-                            <td id="showFPGResult"></td>                   
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ระดับน้ำตาลเฉลี่ยในเลือด (HbA1C)</th>
-                            <td id="showHbA1CResult"></td>
-                            
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ความดัน (Pressure)</th>
-                            
-                            <td id="showPressureResult">
-                                
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ไตรกลีเซอไรด์ (TG)</th>
-                            <td id="showTGResult"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">แอลดีแอล (LDL)</th>
-                            <td id="showLDLResult"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">เอชดีแอล (HDL)</th>
-                            <td id="showHDLResult"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">BMI</th>
-                            <td id="showBMIResult"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">สารไข่ขาว (Albumin)</th>
-                            <td id="showAlbuminResult"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ส่วนสูง ซม. (Height cm.)</th>
-                            <td id="showHeightResult"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">น้ำหนัก กก. (Weight kg.)</th>
-                            <td id="showWeightResult"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ยาที่ได้รับ (Medicine)</th>
-                            <td id="showMedicineResult"></td>
-                        </tr>
-
-
-                    </table>
-                    
-                </div>
+                
+            </div>
+            <div>
+                 <img src="https://lh3.googleusercontent.com/z78OwGzzRV2aXYaK5rt0AFeJwIPbdbQVn-3wtZ08ZK-WoRVEdpNz43xXdbOOgwu1kyYUT36YxftjS1qkjW2IQcF600HXyKdTa-tdDfnQ-WQvMRrR15sbTi9HAcq-mQlQSzPxqNHOTkVb9jEyOGQK8TlHy1KeOe4atydYq1U0XPd0rqBH_8bsviAKTjQNJDL7rjr5zfs85X2jCHAViMmkfj9d-HedqkBXvDKgDSkRMa96K4RJfcrkis2a1EWnvjHQ5j8HagNNzA2LMr2SA59gVlCW_5Ceg6wQ0zzbnR-xXHyRMrKRkCup8EaoYf38-I9UHwcYYKQiMQH37IIrbIX_HmNAXIyapCgU9fSROZcaUvih3d-5KkMfgcXbIOtruwXS57yqy4933cXwUOijfyporzv_ugsfCV-LP54ifgKEldNU94zFePoGi0XGZhvUwVHiT1VvRPW7lzGG-r0xpqe4k6mSi4Huipgjsp7mAgxvC6qOm4GeyTglmxwOq6PA7xwfUo1fE30XqEDHYRWCnc6hCV7XgrYGB8yV0o5XWEEBE_p_9WWjTgtLMJBoiylgsH6r41DQ_V7Qy-OlScSseQWa7jDYuCbEe-6wNL0Ky55Dgaocr0t7G3sqcKd75yOX7Rxa0MO2rtSdtcfqSyrIKNx7vffcJWIEa3mj6STZ-hfRMhyGFzOsXBcBmw=s969-no?fbclid=IwAR0usbT483SquWHQUxOJunjJEucCDeUJPnOheF29kd_A_56zjYQx782unHU" alt="img" width="100%" height="auto">
+            </div>
+            <div>
+                <br>
+                <form name="checkoutForm" method="POST" action="checkout.php">
+                    <script type="text/javascript" src="https://cdn.omise.co/omise.js"
+                      data-key="pkey_test_5iy8mypoy2a7wq1hnu2"
+                      data-image="https://lh3.googleusercontent.com/z78OwGzzRV2aXYaK5rt0AFeJwIPbdbQVn-3wtZ08ZK-WoRVEdpNz43xXdbOOgwu1kyYUT36YxftjS1qkjW2IQcF600HXyKdTa-tdDfnQ-WQvMRrR15sbTi9HAcq-mQlQSzPxqNHOTkVb9jEyOGQK8TlHy1KeOe4atydYq1U0XPd0rqBH_8bsviAKTjQNJDL7rjr5zfs85X2jCHAViMmkfj9d-HedqkBXvDKgDSkRMa96K4RJfcrkis2a1EWnvjHQ5j8HagNNzA2LMr2SA59gVlCW_5Ceg6wQ0zzbnR-xXHyRMrKRkCup8EaoYf38-I9UHwcYYKQiMQH37IIrbIX_HmNAXIyapCgU9fSROZcaUvih3d-5KkMfgcXbIOtruwXS57yqy4933cXwUOijfyporzv_ugsfCV-LP54ifgKEldNU94zFePoGi0XGZhvUwVHiT1VvRPW7lzGG-r0xpqe4k6mSi4Huipgjsp7mAgxvC6qOm4GeyTglmxwOq6PA7xwfUo1fE30XqEDHYRWCnc6hCV7XgrYGB8yV0o5XWEEBE_p_9WWjTgtLMJBoiylgsH6r41DQ_V7Qy-OlScSseQWa7jDYuCbEe-6wNL0Ky55Dgaocr0t7G3sqcKd75yOX7Rxa0MO2rtSdtcfqSyrIKNx7vffcJWIEa3mj6STZ-hfRMhyGFzOsXBcBmw=s969-no?fbclid=IwAR0usbT483SquWHQUxOJunjJEucCDeUJPnOheF29kd_A_56zjYQx782unHU"
+                      data-frame-label="Merchant site name"
+                      data-button-label="ชำระเงิน"
+                      data-submit-label="Submit"
+                      data-amount="10025"
+                      data-currency="thb"
+                      >
+                    </script>
             </div>
         </div>
 
-
+<div>
+   
+</div>
         <!--jQuery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!--Web3-->
@@ -201,5 +159,6 @@
         <script src="js/showDetailUser.js"></script>
         <!--homepage js-->
         <script src="js/homepage.js"></script>
+        <script src="pay.js"></script>
     </body>
 </html>
