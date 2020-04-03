@@ -1,3 +1,5 @@
+var firstCountRegis = 0;
+
 //แสดง address ของผู้ใช้
 promiseSetAddress.then(function() {
     $(window).load(function () {
@@ -7,7 +9,6 @@ promiseSetAddress.then(function() {
             });
 
             $("#addressUser").html(web3.eth.accounts[0]);
-            
         
         } else {
             $("#addressUser").html("กรุณาเชื่อมต่อ MetaMask");
@@ -37,27 +38,53 @@ promiseSetAddress.then(function() {
                 if (result == false) {
                     var r = confirm("ข้อมูลถูกต้องแล้วใช่ไหม?");
                     // เพิ่มข้อมูลผู้ใช้
-                    if (r == true) {              
-                        contract.addUser(
-                            $('#password').val(), 
-                            $('#gender').val(), 
-                            $('#fname').val(), 
-                            $('#lname').val(), 
-                            $('#address').val(), 
-                            convertDateToTimestamp($("#birthDate").val()), 
-                            $('#disease').val(), 
-                            $('#medicine').val(),
-                            $('#phoneNumber').val(), 
-                            (err, res) => { //Have Error
-                            if (err) {
-                                console.log(err);
+                    if (r == true) { 
+                       
+                            if (!err) {
+                                contract.addUser(
+                                    $('#password').val(), 
+                                    $('#gender').val(), 
+                                    $('#fname').val(), 
+                                    $('#lname').val(), 
+                                    $('#address').val(), 
+                                    convertDateToTimestamp($("#birthDate").val()), 
+                                    $('#disease').val(), 
+                                    $('#medicine').val(),
+                                    $('#phoneNumber').val(),
+                                    payETH * 1000000000000000000,
+                                    new Date().getTime(),
+                                    plusOneYear(new Date().getTime()),
+                                    {value: payETH * 1000000000000000000, gas: 2000000},                              
+                                    (err, res) => { //Have Error
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                //$("#errmsgRegister").html('<span class="badge badge-primary">Loading...</span>');
+                                $("#errmsgRegister").html('<div class="loader"></div>');
+                                sessionStorage.setItem("Login", 'true');
+                                sessionStorage.setItem("password", $('#password').val());
+                                console.log('add success');
+                                });
+                            } else {
+                                console.log('error');
                             }
-                        //$("#errmsgRegister").html('<span class="badge badge-primary">Loading...</span>');
-                        $("#errmsgRegister").html('<div class="loader"></div>');
-                        sessionStorage.setItem("Login", 'true');
-                        sessionStorage.setItem("password", $('#password').val());
-                        console.log('add success');
-                        });
+                            
+
+                                
+         
+                        
+
+                        // เช็คเพื่อเปลี่ยนหน้า ทุกๆ 5 วินาที หลังสมัครเสร็จ
+                         setInterval(function(){ 
+                            contract.getUserP1(function(error, result) {
+                                firstCountRegis = result[1].c[0];
+                            });
+                            if (firstCountRegis > 0) {
+                                location.href="detailPersonal.html";
+                            } else {
+                                console.log('not yet');
+                            }
+                        }, 5000);
                     }
                 } else {
                     // แสดงข้อความว่าเคยสมัครแล้ว
@@ -84,15 +111,4 @@ $('#clickLogin').click(function() {
         }
     });   
 });
- 
-// รอ event สำหรับ register โหลดจนบันทึกข้อมูลให้เสร็จ แล้วไปยังหน้า detail บุคคล
-var addDetailUserEvent = contract.addUserEvent({}, 'lastest');
-addDetailUserEvent.watch(function(error, result) {
-    if (!error) {
-        location.href="detailPersonal.html";
-    } else {
-        console.log(error);
-    }
-});
-
 

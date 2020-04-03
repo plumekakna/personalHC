@@ -1,8 +1,16 @@
+var firstCount = 0 ;
+var secoundCount = 0;
+
 // แสดงชื่อ
 promiseSetAddress.then(function() {
     $(window).load(function () {
         contract.getUserP1 (function(err , res){
             $("#names").html(res[3] + "&nbsp&nbsp" + res[4]);
+        });
+
+        contract.returnIdLastResult(function(error, result) {
+            firstCount = result.c[0];
+            console.log(firstCount);
         });
     });
 });
@@ -31,15 +39,29 @@ $('#buttonaddresult').click(function () {
                 }   
             });
             $("#errmsgAddResult").html('<div class="loader"></div>');
+
+            // เช็คเพื่อเปลี่ยนหน้า ทุกๆ 5 วินาที
+            setInterval(function(){ 
+                contract.returnIdLastResult(function(error, result) {
+                    secoundCount = result.c[0];
+                    console.log(secoundCount);
+                });
+                if (secoundCount > firstCount) {
+                    localStorage.setItem('idOneresult', secoundCount);
+                    location.href="showOneResult.html";
+                } else {
+                    console.log('not yet');
+                }
+        }, 5000);
     }
     
 });
 
-// รอ event สำหรับ add result โหลดจนบันทึกข้อมูลให้เสร็จ แล้วไปยังหน้า detail บุคคล
-var addResultUserEvent = contract.addResultrEvent({}, 'lastest');
+// event ไว้เก็บจำนวนผลการตรวจ
+var addResultUserEvent = contract.addResultrEvent({}, {fromBlock:0, toBlock: 'latest'});
 addResultUserEvent.watch(function(error, result) {
     if (!error) {
-        location.href="index.html";
+        //location.href="index.html";
     } else {
         console.log(error);
     }
@@ -58,3 +80,5 @@ function BMIcalculate(_weight, _height) {
     _bmi = _w / ((_h / 100) ** 2);
     return (_bmi);
 }
+
+

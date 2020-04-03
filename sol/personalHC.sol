@@ -2,6 +2,7 @@ pragma solidity ^0.5.8;
 
 // Contract User !!!!!!!!!!!!!!!!!!!!!!!
 contract personalUser{
+    
     // struct data User
     struct User {
         address addressWalletUser;
@@ -17,6 +18,20 @@ contract personalUser{
         string phoneUser;
         
     }
+    
+    // set Owner
+    address payable public receiver = msg.sender;
+    
+    // struct pay
+    struct Pay{
+        uint idPay;
+        uint datePay;
+        uint EXPdate;
+        bool keep;
+    }
+    
+    // mapping pay
+    mapping(address=> mapping(uint =>Pay)) pay;
     
     //count user
     address [] public countUser;
@@ -38,9 +53,21 @@ contract personalUser{
         int _dateUser,
         string memory _diseaseUser,
         string memory _medicineUser,
-        string memory _phoneUser
+        string memory _phoneUser,
+        uint _amount,
+        uint _datePay,
+        uint _EXPdate
+
         ) 
-        public  {
+        public payable {
+        // pay first time
+        require(msg.value == _amount);
+        uint256 amount = msg.value;
+        receiver.transfer(amount); 
+        pay[msg.sender][1].idPay = 1;
+        pay[msg.sender][1].datePay = _datePay;
+        pay[msg.sender][1].EXPdate = _EXPdate;
+        pay[msg.sender][1].keep = true;
         user[msg.sender].addressWalletUser = msg.sender;
         user[msg.sender].idUser = countUser.length + 1 ;
         user[msg.sender].passwordUser = _passwordUser;
@@ -129,7 +156,6 @@ contract Result is personalUser {
         string medicine;
         uint resultDate;
         bool keep;
-        uint timesPerYear;
         bool insurance;
         
     }
@@ -158,6 +184,19 @@ contract Result is personalUser {
             if (resultUser[msg.sender][1].keep == true) {
                 return (true);  // if have return true
             } 
+    }
+    
+    // return last id result
+    function returnIdLastResult() public view returns (uint) {
+        uint _x = 1;
+            while (true) {
+                if (resultUser[msg.sender][_x].keep == true) {
+                    _x++;
+                } else {
+                    break;
+                }
+            }
+            return (resultUser[msg.sender][_x-1].idResult);
     }
     
     // get last result user
@@ -238,13 +277,7 @@ contract Result is personalUser {
                 resultUser[msg.sender][_x].resultDate = _resultDate;
                 resultUser[msg.sender][_x].keep = true;
                 
-                // count times per year
-                if (resultUser[msg.sender][_x - 1].timesPerYear < 4) {
-                    resultUser[msg.sender][_x].timesPerYear = resultUser[msg.sender][_x - 1].timesPerYear + 1;
-                } else {
-                    resultUser[msg.sender][_x].timesPerYear = 1;
-                }
-                
+
                 // compare for insurance
                 if (compareFPG(_x) == 1
                 && compareHbA1c(_x) == 1
@@ -448,15 +481,15 @@ contract Result is personalUser {
     }
 
     // BMI    
-    function compareBmi(unit_id) public view returns(nint){
+    function compareBmi(uint _id) public view returns(uint){
         uint _result;
         int _value = resultUser[msg.sender][_id].BMI;
         if (_value < 1850){
             _result = 0;
         } else if (_value > 2300){
-            result = 2;
+            _result = 2;
         } else {
-            result = 1;
+            _result = 1;
         }
         return (_result);
     }
@@ -464,3 +497,29 @@ contract Result is personalUser {
 }
 
 
+contract Pay is Result {
+        // get last pay
+        function getLastPay() public view returns(uint, uint, uint) {
+            uint _x = 1;
+            while (true) {
+                if (pay[msg.sender][_x].keep == true) {
+                    _x++;
+                } else {
+                    break;
+                }
+            }
+            return (pay[msg.sender][_x-1].idPay, pay[msg.sender][_x-1].datePay, pay[msg.sender][_x-1].EXPdate);
+        }
+        
+        // Pay
+        function paying(uint _amount, uint _id, uint _datePay, uint _EXPdate) payable public {
+            require(msg.value == _amount);
+            uint256 amount = msg.value;
+            receiver.transfer(amount);
+            _id = _id + 1;
+            pay[msg.sender][_id].idPay = _id;
+            pay[msg.sender][_id].datePay = _datePay;
+            pay[msg.sender][_id].EXPdate = _EXPdate;
+            pay[msg.sender][_id].keep = true;
+        }
+}

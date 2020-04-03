@@ -24,22 +24,41 @@ promiseSetAddress.then(function () {
         
     });
 
+
+
+
+
     contract.compareFPG(localStorage.getItem('idOneresult'), function(err, result){
         $('#FPGResult').html(convertResult(result.c));
+
+    });
+    
+    contract.compareHbA1c(localStorage.getItem('idOneresult'), function(err, result){
         $('#HbA1cResult').html(convertResult(result.c));
-        $('#pressureResult').html(convertResult(result.c));
-        $('#pressureResult').html(convertResult(result.c));
-        $('#TGResult').html(convertResult(result.c));
-        $('#LDLResult').html(convertResult(result.c));
-        $('#HDLResult').html(convertResult(result.c));
-        $('#AlbuminResult').html(convertResult(result.c));
-        $('#BMIResult').html(convertResult(result.c));
-        console.log(result);
-  })
-    
-    
+    });
+
+    contract.comparePressure(localStorage.getItem('idOneresult'), function(err, result){
+  $('#pressureResult').html(convertResult(result.c));
+    });
+
+    contract.compareTG(localStorage.getItem('idOneresult'), function(err, result){
+  $('#TGResult').html(convertResult(result.c));
+    });
+
+    contract.compareLDL(localStorage.getItem('idOneresult'), function(err, result){
+  $('#LDLResult').html(convertResult(result.c));
+    });
+
+    contract.compareHDL(localStorage.getItem('idOneresult'), function(err, result){
+  $('#HDLResult').html(convertResult(result.c));
+    });
+
+    contract.compareAlbumin(localStorage.getItem('idOneresult'), function(err, result){
+  $('#AlbuminResult').html(convertResult(result.c));
+    });
+
+    contract.compareBmi(localStorage.getItem('idOneresult'), function(err, result){
+  $('#BMIResult').html(convertResult(result.c));
+    });
+
 });
-
-   
-
-

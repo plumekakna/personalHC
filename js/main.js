@@ -169,12 +169,27 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                         "internalType": "string",
                         "name": "_phoneUser",
                         "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_datePay",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_EXPdate",
+                        "type": "uint256"
                     }
                 ],
                 "name": "addUser",
                 "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
+                "payable": true,
+                "stateMutability": "payable",
                 "type": "function"
             },
             {
@@ -411,6 +426,31 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                         "internalType": "address",
                         "name": "",
                         "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "getLastPay",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
                     }
                 ],
                 "payable": false,
@@ -681,6 +721,66 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                 "type": "function"
             },
             {
+                "constant": false,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_datePay",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_EXPdate",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "paying",
+                "outputs": [],
+                "payable": true,
+                "stateMutability": "payable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "receiver",
+                "outputs": [
+                    {
+                        "internalType": "address payable",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "returnIdLastResult",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
                 "constant": true,
                 "inputs": [],
                 "name": "showListResult",
@@ -697,7 +797,9 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
             }
         ]);
     // Set Address Transection
-    contract = contractAbi.at('0x578060C278593E105681B797c0cF4aC539c534D3');
+    contract = contractAbi.at('0x96d8AD01419599E25b6BDD79F5f721498C4F0884');
+
+
 
     //resovle
     resovle('success');  
@@ -781,5 +883,17 @@ function convertTimestampToDate(_timestamp) {
     return (d + '&nbsp' + month[m] + '&nbspพ.ศ.&nbsp' + y);
 }
 
+// บวก 1 ปี
+function plusOneYear(_timestamp) {
+    var a = new Date(parseInt(_timestamp));
+    var day = a.getDate();
+    var month = a.getMonth() + 1; 
+    var year = a.getFullYear();
+    var nextYear = a.getFullYear() + 1;
+    var fulldateNextYear = month.toString() + "/" + day.toString() + "/" + nextYear.toString();
+    var toTimestampNextYear = new Date(fulldateNextYear);
+    var timeStampNextYear = toTimestampNextYear.getTime();    
+    return(timeStampNextYear);
+}
 
 
