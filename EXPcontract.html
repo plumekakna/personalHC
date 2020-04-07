@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Maitree:500&display=swap" rel="stylesheet">
 		<!--Main  CSS-->
         <link rel="stylesheet" href="css/main.css">
-        <!-- checkStillLogin js -->
+        <!--main js-->
         <script src="js/checkStillLogin.js"></script>
     </head>
     <body class="bg-light">
@@ -32,8 +32,8 @@
 					<li class="nav-item">
 					  	<a class="nav-link" href="index.html">หน้าแรก</a>
 					</li>
-					<li class="nav-item active">
-					  	<a class="nav-link active" href="detailPersonal.html">ข้อมูลส่วนตัว</a>
+					<li class="nav-item">
+					  	<a class="nav-link" href="detailPersonal.html">ข้อมูลส่วนตัว</a>
 					</li>
 					<li class="nav-item">
 					  	<a class="nav-link" href="resultUser.html">ผลการตวจ</a>
@@ -42,8 +42,8 @@
                         <a class="nav-link" href="addresult.html">เพิ่มผลการตรวจ</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="EXPcontract.html">อายุสัญญา</a>
-                </li>
+                    <a class="nav-link active" href="EXPcontract.html">อายุสัญญา</a>
+              </li>
                 </ul>
 
                 </div>
@@ -62,55 +62,40 @@
 
         <!--Body-->
         <div class="container bg-white border mg_body" style="margin-top:1%; padding: 2%; text-align: center;">
-            <div class="row">
-
-                <div class="col" style="text-align: left;">
-                    <h2>ข้อมูลส่วนตัว</h2> </br>
-                    <h4 id="names" class="pl-3"></h4>
-                </div>
-
-                <div class="col" style="text-align: left;"> </br>
-                    <table class="table">
-                        <tr> </br> </br>
-                            <th scope="row">อายุ</th>
-                            <td id="age"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">วันเกิด</th>
-                            <td id="dates"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">เพศ</th>
-                            <td id="genders"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ที่อยู่</th>
-                            <td id="addresss"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">เบอร์โทร</th>
-                            <td id="phones"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">โรคประจำตัว</th>
-                            <td id="diseass"></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ประวัติแพ้ยา</th>
-                            <td id="medics"></td>
-                        </tr>
-                    </table>
-                </div>
+            <div class="container" id="successAlert">
+                    
             </div>
+        
+            <div class="mb-3" style="text-align: center;">
+                <h2>อายุสัญญา</h2>
+            </div>                
+            
+            <div class="mb-3" style="text-align: center;">
+                <b>วันหมดอายุ</b> : <span id="expDate"></span>             
+            </div>
+            <div class="mb-3" style="text-align: center;">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                    <tr class="table-warning">
+                        <th scope="row">จำนวน Ether ที่ต้องจ่าย</th>
+                        <td id="ETHpay"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center">
+                   <small style="color:red;">* 1 บาท = <span id="ETHbaht"></span></small>
+                </div>
+                <div class="d-flex justify-content-center pb-2">
+                   <small style="color:red;">** ไม่รวมค่า gas</small>
+                </div>     
+                <div id="loading"></div>
+                <div class="d-flex justify-content-center" id="bthpay">
+                    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                </div> 
+            </div>
+            
+            
         </div>
-
-
         <!--jQuery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!--Web3-->
@@ -119,7 +104,7 @@
         <script src="js/bootstrap.min.js"></script>
         <!--main js-->
         <script src="js/main.js"></script>
-        <!--Showdetail js-->
-        <script src="js/showDetailUser.js"></script>
+        <!--EXP js-->
+        <script src="js/EXPcontract.js"></script>
     </body>
 </html>
