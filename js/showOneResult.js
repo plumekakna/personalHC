@@ -1,5 +1,6 @@
 //แสดงข้อมูลผลตรวจในหน้า showOneResult
 promiseSetAddress.then(function () {
+  $(window).load(function () {
     contract.getResultUserPerId1(localStorage.getItem('idOneresult'), function(err, result) {
         $('#dateOneResult1').html('วันที่ ' + convertTimestampToDate(result[1]));
         $('#dateOneResult').html(convertTimestampToDate(result[1]));
@@ -61,4 +62,5 @@ promiseSetAddress.then(function () {
   $('#BMIResult').html(convertResult(result.c));
     });
 
+  });
 });
