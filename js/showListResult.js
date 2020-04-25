@@ -16,7 +16,8 @@ promiseSetAddress.then(function () {
             }
 
             setTimeout(function () { 
-            FS(y);
+                $('#loaderResult').html('');
+                FS(y);
             }, 1000);
              
 
@@ -28,6 +29,7 @@ promiseSetAddress.then(function () {
 
 
 function FS(y) {
+    
     while (y > 0) {
         $('#listResult').append(forSort[y]);
         y--;

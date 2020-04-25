@@ -38,10 +38,10 @@ promiseSetAddress.then(function() {
 // เก็บ Session still login เมื่อทำการ Login
 $('#clickLogin').click(function() {
     contract.checkLogin($('#userLogin').val(),  function(err, result) {
-        sessionStorage.setItem("Login", result);
-        console.log(sessionStorage.getItem("Login"));
-        if (sessionStorage.getItem("Login") == "true") {
-            sessionStorage.setItem("password", $('#userLogin').val());
+        localStorage.setItem("Login", result);
+        console.log(localStorage.getItem("Login"));
+        if (localStorage.getItem("Login") == "true") {
+            localStorage.setItem("password", $('#userLogin').val());
             location.href='index.html';
         } else {
             $("#errmsgLogin").html('<span class="badge badge-danger">รหัสผ่านไม่ถูกต้อง</span>');
@@ -63,7 +63,7 @@ promiseSetAddress.then(function() {
                 ETHpay = bahtperETH * 4000;
                 console.log(ETHperbaht);
                 // แสดงจำนวนเงินที่ต้องจ่าย
-                $("#ETHpay").html('&nbsp' + ETHpay + '&nbspETH/ปี');
+                $("#ETHpay").html('&nbsp' + ETHpay.toFixed(4) + '&nbspETH/ปี');
                 $("#ETHbaht").html('&nbsp' + bahtperETH + '&nbspETH');
                 $("#bthRegister").html('<button type="button" id="buttonRegister" class="btn btn-primary" onclick="buttonRegister()">จ่ายเงินและสมัครสมาชิก </button>');
             })
@@ -98,15 +98,15 @@ function buttonRegister() {
                                 ETHpay * 1000000000000000000,
                                 new Date().getTime(),
                                 plusOneYear(new Date().getTime()),
-                                {value: ETHpay * 1000000000000000000, gas: 2000000},                              
+                                {value: ETHpay * 1000000000000000000},                              
                                 (err, res) => { //Have Error
                                 if (err) {
                                     console.log(err);
                                 }
                             //$("#errmsgRegister").html('<span class="badge badge-primary">Loading...</span>');
                             $("#errmsgRegister").html('<div class="loader"></div>');
-                            sessionStorage.setItem("Login", 'true');
-                            sessionStorage.setItem("password", $('#password').val());
+                            localStorage.setItem("Login", 'true');
+                            localStorage.setItem("password", $('#password').val());
                             console.log('add success');
                             });
                         } else {

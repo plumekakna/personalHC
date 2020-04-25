@@ -806,15 +806,15 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
 })
 .then(function() {
         $(window).load(function () {
-            if (sessionStorage.getItem("Login") == 'true' && sessionStorage.getItem("password") != 'null') {
-                contract.checkLogin(sessionStorage.getItem("password"), function(err, result) {
-                    sessionStorage.setItem("Login", result);
+            if (localStorage.getItem("Login") == 'true' && localStorage.getItem("password") != 'null') {
+                contract.checkLogin(localStorage.getItem("password"), function(err, result) {
+                    localStorage.setItem("Login", result);
                     contract.getUserP1(function(err, result) {
-                        if (sessionStorage.getItem("Login") == "true"){
-                        $('#stillLogin').html("คุณคือ&nbsp" + result[3] + "&nbsp<a href='index.html' onclick='sessionStorage.removeItem(" + '"' + "Login" + '"' + ");sessionStorage.removeItem(" + '"' + "password" + '"' + ");'" + ">logout</a>");
+                        if (localStorage.getItem("Login") == "true"){
+                        $('#stillLogin').html("คุณคือ&nbsp" + result[3] + "&nbsp<a href='index.html' onclick='localStorage.removeItem(" + '"' + "Login" + '"' + ");localStorage.removeItem(" + '"' + "password" + '"' + ");'" + ">logout</a>");
                         } else {
                             //ลบ session password
-                            sessionStorage.removeItem("password");
+                            localStorage.removeItem("password");
                             $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'contract.html' + "'" + '">Register</button>');
                         }
                     });  
@@ -823,6 +823,7 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                 $('#stillLogin').html('<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'login.html' + "'" + '">Login</button>&nbsp<button type="button" class="btn btn-outline-dark" onclick="location.href=' + "'" + 'contract.html' + "'" + '">Register</button>');
             }
             console.log(web3.eth.defaultAccount);
+            
         });
 });
 

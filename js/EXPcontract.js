@@ -37,7 +37,7 @@ promiseSetAddress.then(function() {
                 ETHpay = bahtperETH * 4000;
                 console.log(ETHperbaht);
                 // แสดงจำนวนเงินที่ต้องจ่าย
-                $("#ETHpay").html('&nbsp' + ETHpay + '&nbspETH/ปี');
+                $("#ETHpay").html('&nbsp' + ETHpay.toFixed(4) + '&nbspETH/ปี');
                 $("#ETHbaht").html('&nbsp' + bahtperETH + '&nbspETH');
                 $("#bthpay").html('<button type="button" class="btn btn-primary" onclick="buttonPay()"> จ่ายเงินต่ออายุ 1 ปี </button>');
             })
@@ -52,7 +52,7 @@ function buttonPay() {
     // เพิ่มข้อมูลผู้ใช้
     if (r == true) { 
         contract.getLastPay(function (error, result) {
-            contract.paying(ETHpay * 1000000000000000000, result[0].c, new Date().getTime(), plusOneYear(result[2].c),{value: ETHpay * 1000000000000000000, gas: 1000000}, (err, res) => { //Have Error
+            contract.paying(ETHpay * 1000000000000000000, result[0].c, new Date().getTime(), plusOneYear(result[2].c),{value: ETHpay * 1000000000000000000}, (err, res) => { //Have Error
                 if (err) {
                     console.log(err);
                 }
