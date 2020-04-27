@@ -57,15 +57,6 @@ $('#buttonaddresult').click(function () {
     
 });
 
-// event ไว้เก็บจำนวนผลการตรวจ
-var addResultUserEvent = contract.addResultrEvent({}, {fromBlock:0, toBlock: 'latest'});
-addResultUserEvent.watch(function(error, result) {
-    if (!error) {
-        //location.href="index.html";
-    } else {
-        console.log(error);
-    }
-});
 
 // เอาค่าที่เก็บแปลงเป็นทศนิยม 2 ตำแหน่ง แล้วไปคูณร้อย เพื่อเปลี่ยนเป็นจำนวนเต็ม
 function multiply100(_input) {

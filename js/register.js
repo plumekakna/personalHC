@@ -83,6 +83,8 @@ function buttonRegister() {
                 var r = confirm("ข้อมูลถูกต้องแล้วใช่ไหม?");
                 // เพิ่มข้อมูลผู้ใช้
                 if (r == true) { 
+                    // เช็คอายุเกินการสมัคร > 17 && < 61
+                    if (calculateAge(convertDateToTimestamp($("#birthDate").val())) > 17 && calculateAge(convertDateToTimestamp($("#birthDate").val())) < 61) {
                    
                         if (!err) {
                             contract.addUser(
@@ -98,6 +100,7 @@ function buttonRegister() {
                                 ETHpay * 1000000000000000000,
                                 new Date().getTime(),
                                 plusOneYear(new Date().getTime()),
+                                $('#idCard').val(), 
                                 {value: ETHpay * 1000000000000000000},                              
                                 (err, res) => { //Have Error
                                 if (err) {
@@ -112,7 +115,7 @@ function buttonRegister() {
                         } else {
                             console.log('error');
                         }
-                        
+                     
 
                             
      
@@ -124,11 +127,14 @@ function buttonRegister() {
                             firstCountRegis = result[1].c[0];
                         });
                         if (firstCountRegis > 0) {
-                            location.href="detailPersonal.html";
+                            location.href="index.html";
                         } else {
                             console.log('not yet');
                         }
                     }, 5000);
+                    } else {
+                        $("#errmsgRegister").html('<br><span class="badge badge-danger">อายุคุณไม่อยู่ในเกณฑ์การสมัคร (มากกว่า 60 ปี หรือน้อยกว่า 18 ปี)</span>');
+                    }
                 }
             } else {
                 // แสดงข้อความว่าเคยสมัครแล้ว

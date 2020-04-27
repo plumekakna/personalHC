@@ -51,33 +51,54 @@ function buttonPay() {
     var r = confirm("จะต่ออายุสัญญา 1 ปี ใช่ไหม?");
     // เพิ่มข้อมูลผู้ใช้
     if (r == true) { 
-        contract.getLastPay(function (error, result) {
-            contract.paying(ETHpay * 1000000000000000000, result[0].c, new Date().getTime(), plusOneYear(result[2].c),{value: ETHpay * 1000000000000000000}, (err, res) => { //Have Error
-                if (err) {
-                    console.log(err);
+        // เช็คอายุสัญญาไม่เกิน 71 ปี
+        contract.getUserP1(function(err, res){   
+            contract.getLastPay(function (error, result) { 
+                console.log(calculateAge(res[5].c) - calculateAge(result[2].c));
+                if ((calculateAge(res[5].c) - calculateAge(result[2].c))  < 71) {
+                    // สัญญาหมดอายุ?
+                    if (result[2].c < new Date().getTime()) {
+                        console.log('หมด');
+                        // หมดแล้วบันทึกวันใหม่
+                        contract.paying(ETHpay * 1000000000000000000, result[0].c, new Date().getTime(), plusOneYear(new Date().getTime()),{value: ETHpay * 1000000000000000000}, (err, res) => { //Have Error
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
+                    } else {
+                        console.log('ยัง');
+                        contract.paying(ETHpay * 1000000000000000000, result[0].c, new Date().getTime(), plusOneYear(result[2].c),{value: ETHpay * 1000000000000000000}, (err, res) => { //Have Error
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                    // loading
+                    $("#loading").html('<div class="loader"></div>'); 
+                
+                    //ดูว่าจ่ายเสร็จรึยัง
+                    setInterval(function () {
+                        contract.getLastPay(function (error, result) {
+                            secoundCount = result[0].c[0];
+                            if (secoundCount > firstCount) {
+                                console.log('success');
+                                $("#successAlert").html("<div class='alert alert-success' role='alert'>ต่ออายุสำเร็จ</div>");
+                                contract.getLastPay(function (error, result) {
+                                    // แสดงวันหมดอายุสัญญา
+                                    $("#expDate").html(convertTimestampToDate(result[2].c));
+                                    $("#loading").html(''); 
+                                    });
+                                //location.href="EXPcontract.php";
+                            } else {
+                                console.log('not yet');
+                            }
+                        });
+                    }, 5000);
+                } else {
+                    $("#loading").html('<br><span class="badge badge-danger">ไม่สามารถต่อสัญญา อายุสัญญาเกิน 70 ปีแล้ว</span>');
                 }
-            });
-        $("#loading").html('<div class="loader"></div>'); 
+            }); 
         });
     }
-
-    //ดูว่าจ่ายเสร็จรึยัง
-    setInterval(function () {
-        contract.getLastPay(function (error, result) {
-            secoundCount = result[0].c[0];
-            if (secoundCount > firstCount) {
-                console.log('success');
-                $("#successAlert").html("<div class='alert alert-success' role='alert'>ต่ออายุสำเร็จ</div>");
-                contract.getLastPay(function (error, result) {
-                    // แสดงวันหมดอายุสัญญา
-                    $("#expDate").html(convertTimestampToDate(result[2].c));
-                    $("#loading").html(''); 
-                    });
-                //location.href="EXPcontract.php";
-            } else {
-                console.log('not yet');
-            }
-        });
-    }, 5000);
 
 }

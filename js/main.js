@@ -35,19 +35,6 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                 "type": "event"
             },
             {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": false,
-                        "internalType": "string",
-                        "name": "fname",
-                        "type": "string"
-                    }
-                ],
-                "name": "addUserEvent",
-                "type": "event"
-            },
-            {
                 "constant": false,
                 "inputs": [
                     {
@@ -184,9 +171,57 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                         "internalType": "uint256",
                         "name": "_EXPdate",
                         "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_idCard",
+                        "type": "string"
                     }
                 ],
                 "name": "addUser",
+                "outputs": [],
+                "payable": true,
+                "stateMutability": "payable",
+                "type": "function"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "fname",
+                        "type": "string"
+                    }
+                ],
+                "name": "addUserEvent",
+                "type": "event"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_datePay",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_EXPdate",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "paying",
                 "outputs": [],
                 "payable": true,
                 "stateMutability": "payable",
@@ -315,7 +350,7 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                         "type": "uint256"
                     }
                 ],
-                "name": "compareHDL",
+                "name": "compareHbA1c",
                 "outputs": [
                     {
                         "internalType": "uint256",
@@ -336,7 +371,7 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                         "type": "uint256"
                     }
                 ],
-                "name": "compareHbA1c",
+                "name": "compareHDL",
                 "outputs": [
                     {
                         "internalType": "uint256",
@@ -714,40 +749,15 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                         "internalType": "string",
                         "name": "",
                         "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
                     }
                 ],
                 "payable": false,
                 "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "_amount",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "_id",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "_datePay",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "_EXPdate",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "paying",
-                "outputs": [],
-                "payable": true,
-                "stateMutability": "payable",
                 "type": "function"
             },
             {
@@ -794,10 +804,51 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                 "payable": false,
                 "stateMutability": "view",
                 "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_id",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "userHaveInsurance",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "userLenght",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
             }
         ]);
     // Set Address Transection
-    contract = contractAbi.at('0x96d8AD01419599E25b6BDD79F5f721498C4F0884');
+    contract = contractAbi.at('0xD3216744d1D8933094143373e358d562399B56bf');
 
 
 

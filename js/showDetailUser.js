@@ -13,8 +13,14 @@ promiseSetAddress.then(function() {
         });
         // แสดงข้อมูลส่วนตัว User Part2
         contract.getUserP2(function(err, res){
-            $("#phones").html(res);
+            $("#phones").html(res[0]);
+            $("#idcard").html(res[1]);
         });
+
+        // แสดงวันหมดอายุสัญญา
+        contract.getLastPay(function (error, result) {            
+            $("#expDate").html(convertTimestampToDate(result[2].c));
+            });
     });
 });
 

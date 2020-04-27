@@ -16,6 +16,7 @@ contract personalUser{
         string diseaseUser;
         string medicineUser;
         string phoneUser;
+        string idCard;
         
     }
     
@@ -56,7 +57,8 @@ contract personalUser{
         string memory _phoneUser,
         uint _amount,
         uint _datePay,
-        uint _EXPdate
+        uint _EXPdate,
+        string memory _idCard
 
         ) 
         public payable {
@@ -79,6 +81,7 @@ contract personalUser{
         user[msg.sender].diseaseUser = _diseaseUser;
         user[msg.sender].medicineUser = _medicineUser;
         user[msg.sender].phoneUser = _phoneUser;
+        user[msg.sender].idCard = _idCard;
         
         countUser.push(msg.sender) -1;
         
@@ -112,8 +115,8 @@ contract personalUser{
     }
     
     //get user details part2
-    function getUserP2() public view returns (string memory) {
-        return (user[msg.sender].phoneUser);
+    function getUserP2() public view returns (string memory, string memory) {
+        return (user[msg.sender].phoneUser, user[msg.sender].idCard);
     }
     
     
@@ -521,5 +524,23 @@ contract Pay is Result {
             pay[msg.sender][_id].datePay = _datePay;
             pay[msg.sender][_id].EXPdate = _EXPdate;
             pay[msg.sender][_id].keep = true;
+        }
+        
+        // returns user length
+        function userLenght() public view returns (uint) {
+            return countUser.length;
+        }
+        
+        // return address and exp date per id
+        function userHaveInsurance(uint _id) public view returns (address, uint) {
+             uint _x = 1;
+            while (true) {
+                if (pay[countUser[_id]][_x].keep == true) {
+                    _x++;
+                } else {
+                    break;
+                }
+            }
+            return (countUser[_id], pay[countUser[_id]][_x-1].EXPdate);
         }
 }
