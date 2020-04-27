@@ -825,6 +825,16 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
                         "internalType": "uint256",
                         "name": "",
                         "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
                     }
                 ],
                 "payable": false,
@@ -848,7 +858,7 @@ const promiseSetAddress = new Promise(function(resovle, reject) {
             }
         ]);
     // Set Address Transection
-    contract = contractAbi.at('0xD3216744d1D8933094143373e358d562399B56bf');
+    contract = contractAbi.at('0x0517BC06FdA45Fc7802cBbF312Dad8c94C0a8aC3');
 
 
 
