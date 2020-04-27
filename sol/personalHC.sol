@@ -532,7 +532,7 @@ contract Pay is Result {
         }
         
         // return address and exp date per id
-        function userHaveInsurance(uint _id) public view returns (address, uint) {
+        function userHaveInsurance(uint _id) public view returns (address, uint, string memory, string memory) {
              uint _x = 1;
             while (true) {
                 if (pay[countUser[_id]][_x].keep == true) {
@@ -541,6 +541,6 @@ contract Pay is Result {
                     break;
                 }
             }
-            return (countUser[_id], pay[countUser[_id]][_x-1].EXPdate);
+            return (countUser[_id], pay[countUser[_id]][_x-1].EXPdate, user[countUser[_id]].fnameUser, user[countUser[_id]].lnameUser);
         }
 }
