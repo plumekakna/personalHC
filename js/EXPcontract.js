@@ -59,17 +59,23 @@ function buttonPay() {
                     // สัญญาหมดอายุ?
                     if (result[2].c < new Date().getTime()) {
                         console.log('หมด');
+                        $("#bthpay").html('<button type="button" class="btn btn-primary" onclick="buttonPay()" disabled> กำลังดำเนินการ... </button>');
                         // หมดแล้วบันทึกวันใหม่
                         contract.paying(ETHpay * 1000000000000000000, result[0].c, new Date().getTime(), plusOneYear(new Date().getTime()),{value: ETHpay * 1000000000000000000}, (err, res) => { //Have Error
                             if (err) {
                                 console.log(err);
+                                $("#bthpay").html('<button type="button" class="btn btn-primary" onclick="buttonPay()"> จ่ายเงินต่ออายุ 1 ปี </button>');
+                                $("#loading").html('');
                             }
                         });
                     } else {
                         console.log('ยัง');
+                        $("#bthpay").html('<button type="button" class="btn btn-primary" onclick="buttonPay()" disabled> กำลังดำเนินการ... </button>');
                         contract.paying(ETHpay * 1000000000000000000, result[0].c, new Date().getTime(), plusOneYear(result[2].c),{value: ETHpay * 1000000000000000000}, (err, res) => { //Have Error
                             if (err) {
                                 console.log(err);
+                                $("#bthpay").html('<button type="button" class="btn btn-primary" onclick="buttonPay()"> จ่ายเงินต่ออายุ 1 ปี </button>');
+                                $("#loading").html('');
                             }
                         });
                     }
@@ -87,6 +93,7 @@ function buttonPay() {
                                     // แสดงวันหมดอายุสัญญา
                                     $("#expDate").html(convertTimestampToDate(result[2].c));
                                     $("#loading").html(''); 
+                                    $("#bthpay").html('<button type="button" class="btn btn-primary" onclick="buttonPay()"> จ่ายเงินต่ออายุ 1 ปี </button>');
                                     });
                                 //location.href="EXPcontract.php";
                             } else {

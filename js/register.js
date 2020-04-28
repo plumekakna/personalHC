@@ -85,7 +85,8 @@ function buttonRegister() {
                 if (r == true) { 
                     // เช็คอายุเกินการสมัคร > 17 && < 61
                     if (calculateAge(convertDateToTimestamp($("#birthDate").val())) > 17 && calculateAge(convertDateToTimestamp($("#birthDate").val())) < 61) {
-                   
+                        $("#bthRegister").html('<button type="button" id="buttonRegister" class="btn btn-primary" onclick="buttonRegister()" disabled>กำลังดำเนินการ... </button>');
+                        $("#errmsgRegister").html('<div class="loader"></div>');
                         if (!err) {
                             contract.addUser(
                                 $('#password').val(), 
@@ -105,9 +106,12 @@ function buttonRegister() {
                                 (err, res) => { //Have Error
                                 if (err) {
                                     console.log(err);
+                                    clearInterval(registering);
+                                    $("#bthRegister").html('<button type="button" id="buttonRegister" class="btn btn-primary" onclick="buttonRegister()">จ่ายเงินและสมัครสมาชิก </button>');
+                                    $("#errmsgRegister").html('');
                                 }
                             //$("#errmsgRegister").html('<span class="badge badge-primary">Loading...</span>');
-                            $("#errmsgRegister").html('<div class="loader"></div>');
+                            
                             localStorage.setItem("Login", 'true');
                             localStorage.setItem("password", $('#password').val());
                             console.log('add success');
@@ -122,7 +126,7 @@ function buttonRegister() {
                     
 
                     // เช็คเพื่อเปลี่ยนหน้า ทุกๆ 5 วินาที หลังสมัครเสร็จ
-                     setInterval(function(){ 
+                     var registering = setInterval(function(){ 
                         contract.getUserP1(function(error, result) {
                             firstCountRegis = result[1].c[0];
                         });

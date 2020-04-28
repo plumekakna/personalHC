@@ -16,9 +16,10 @@ promiseSetAddress.then(function() {
 });
 
 // บันทึกผลการตรวจ
-$('#buttonaddresult').click(function () {
+function addResult() {
     var r = confirm("ข้อมูลถูกต้องแล้วใช่ไหม?");
     if (r == true) {
+        $('#bthResult').html('<button type="button" id="buttonaddresult" class="btn btn-primary" disabled>กำลังดำเนินการ... </button>');
         contract.addResultUser(
             multiply100($('#fpgvalue').val()),
             multiply100($('#hbavalue').val()), 
@@ -36,12 +37,15 @@ $('#buttonaddresult').click(function () {
             (err, res) => { //Have Error
                 if (err) {
                     console.log(err);
+                    clearInterval(checking);
+                    $('#bthResult').html('<button type="button" onclick="addResult()" class="btn btn-primary">บันทึกผล </button>');
+                    $("#errmsgAddResult").html('');
                 }   
             });
             $("#errmsgAddResult").html('<div class="loader"></div>');
 
             // เช็คเพื่อเปลี่ยนหน้า ทุกๆ 5 วินาที
-            setInterval(function(){ 
+            var checking = setInterval(function(){ 
                 contract.returnIdLastResult(function(error, result) {
                     secoundCount = result.c[0];
                     console.log(secoundCount);
@@ -55,7 +59,7 @@ $('#buttonaddresult').click(function () {
         }, 5000);
     }
     
-});
+};
 
 
 // เอาค่าที่เก็บแปลงเป็นทศนิยม 2 ตำแหน่ง แล้วไปคูณร้อย เพื่อเปลี่ยนเป็นจำนวนเต็ม
